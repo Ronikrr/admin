@@ -46,7 +46,7 @@ function App() {
             {/* Routes */}
             <div className="w-screen overflow-x-hidden sm:w-full">
               <Routes>
-                <Route path="/mainadmin" element={<Websolexadmin />} />
+                <Route path="/" element={<Websolexadmin />} />
                 <Route path='/crm' element={<Crm />} />
                 <Route path='/marketing' element={<Markating />} />
 
