@@ -39,7 +39,7 @@ const websolexhome = () => {
                         </div>
                         <div class="mt-4 flex items-end justify-between">
                             <div>
-                                <h4 class="text-[24px] font-semibold text-black dark:text-white">
+                                <h4 class="text-[24px] font-semib">
                                     $3.456K
                                 </h4>
                                 <span class="text-sm font-semibold flex text-[#64748B]">Total views</span>
@@ -71,7 +71,7 @@ const websolexhome = () => {
                         </div>
                         <div class="mt-4 flex items-end justify-between">
                             <div>
-                                <h4 class="text-[24px] font-semibold text-black dark:text-white">
+                                <h4 class="text-[24px] font-semibold text-black ">
                                     $3.456K
                                 </h4>
                                 <span class="text-sm font-semibold flex text-[#64748B]">Total views</span>
@@ -103,7 +103,7 @@ const websolexhome = () => {
                         </div>
                         <div class="mt-4 flex items-end justify-between">
                             <div>
-                                <h4 class="text-[24px] font-semibold text-black dark:text-white">
+                                <h4 class="text-[24px] font-semibold text-black ">
                                     $3.456K
                                 </h4>
                                 <span class="text-sm font-semibold flex text-[#64748B]">Total views</span>
@@ -135,7 +135,7 @@ const websolexhome = () => {
                         </div>
                         <div class="mt-4 flex items-end justify-between">
                             <div>
-                                <h4 class="text-[24px] font-semibold text-black dark:text-white">
+                                <h4 class="text-[24px] font-semibold text-black ">
                                     $3.456K
                                 </h4>
                                 <span class="text-sm font-semibold flex text-[#64748B]">Total views</span>
