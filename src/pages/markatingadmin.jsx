@@ -12,7 +12,8 @@
   import Marktingtable from "../components/markting/marktingtable";
   // Register the ChartJS components
   // import { MdOutlineCalendarMonth } from "react-icons/md";
-  import Campng from "../components/crm/campng";
+import Campng from "../components/crm/campng";
+import Channlvisiter from "../components/markting/channlvisiter";
   // Circular Progress Component
 
 
@@ -76,8 +77,8 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-10">
-      <div className="">
+    <div className="p-5 lg:p-10 ">
+      <div className="w-full">
         {/* Header */}
         <div className="flex flex-col gap-2 mb-8 sm:flex-row sm:items-center sm:justify-between">
           <div className="">
@@ -105,7 +106,7 @@ const Dashboard = () => {
         </div>
 
         {/* Cards */}
-        <div className="2xl:gap-7.5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6 xl:grid-cols-3">
+        <div className="2xl:gap-7.5 flex flex-wrap gap-4  md:gap-6 ">
           {stats.map((stat, index) => (
             <StatCard key={index} {...stat} />
           ))}
@@ -114,8 +115,8 @@ const Dashboard = () => {
 
 
       <Marktingtable />
-      <Table />
-      <Campng />
+      <Channlvisiter />
+      {/* <Campng /> */}
     </div>
 
   );

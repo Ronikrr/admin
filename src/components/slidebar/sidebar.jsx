@@ -55,7 +55,7 @@ function Sidebar() {
     };
 
     return (
-        <div className="flex flex-col w-[289.9px] h-screen text-white bg-[#1C2434]">
+        <div className="flex flex-col main_class h-screen  md:w-[289.9px]  text-white bg-[#1C2434]">
             <div className="flex items-center p-6 space-x-2 text-2xl font-bold">
                 <div className="flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full">
                     <span className="text-lg font-bold text-white">T</span>

@@ -28,9 +28,10 @@ const Header = () => {
     }
 
     return (
-        <div className='h-[80px] w-full flex px-11 py-4  items-center justify-center bg-[#fff] '>
-            <div className="flex items-center justify-between w-full">
-                <div className="flex items-center space-x-3">
+        <div className='h-[80px] w-screen md:w-full flex px-11 py-4  items-center justify-center bg-[#fff] '>
+            <div className="flex items-center justify-center w-full lg:justify-between">
+                <div className="block md:hidden"></div>
+                <div className="flex items-center space-x-3 search">
                     <div className="">
                         <IoIosSearch className='text-[20px]' />
                     </div>
@@ -38,7 +39,9 @@ const Header = () => {
                 </div>
                 <div className="flex items-center gap-4">
                     <ul className="flex items-center gap-4">
-                        <li className=""></li>
+                        <li className="">
+
+                        </li>
                         <li className="relative">
                             <Link className='w-[33.99px] relative h-[33.99px] rounded-full flex items-center justify-center border border-[0.5px] border-[rgba(226,232,240,1)] bg-[rgba(239,244,251,1)]' onClick={toggledropdown} >
                                 <RiNotification2Line />

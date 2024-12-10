@@ -32,29 +32,31 @@ import Markating from './pages/markatingadmin';
 
 function App() {
   return (
-    <Router>
-      <div className="flex h-screen bg-[#f1f5f9] ">
-        {/* Sidebar */}
-        <Sidebar />
+    <div className="bg-[#f1f5f9] w-full ">
+      <Router>
+        <div className="flex w-screen  sm:w-full h-full lg:h-screen bg-[#f1f5f9] ">
+          {/* Sidebar */}
+          <Sidebar />
 
-        {/* Main Content */}
-        <div className="flex flex-col flex-1">
-          {/* Header */}
-          <Header />
+          {/* Main Content */}
+          <div className="flex flex-col flex-1">
+            {/* Header */}
+            <Header />
 
-          {/* Routes */}
-          <div className="flex-1 overflow-auto">
-            <Routes>
-              <Route path="/mainadmin" element={<Websolexadmin />} />
-              <Route path='/crm' element={<Crm />} />
-              <Route path='/marketing' element={<Markating />} />
-              
-              {/* Add other routes here */}
-            </Routes>
+            {/* Routes */}
+            <div className="w-screen overflow-x-hidden sm:w-full">
+              <Routes>
+                <Route path="/mainadmin" element={<Websolexadmin />} />
+                <Route path='/crm' element={<Crm />} />
+                <Route path='/marketing' element={<Markating />} />
+
+                {/* Add other routes here */}
+              </Routes>
+            </div>
           </div>
         </div>
-      </div>
-    </Router>
+      </Router>
+    </div>
   );
 }
 

@@ -2,7 +2,36 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  @screen 2xl {
+    .main_class {
+      @apply block;
+    }
+  }
+  @screen xl {
+    .main_class {
+      @apply block;
+    }
+  }
+  @screen lg {
+    .main_class {
+      @apply hidden;
+    }
+  }
+  @screen md {
+    .main_class {
+      @apply hidden;
+    }
+  }
+  @screen sm {
+    .main_class {
+      @apply hidden;
+    }
+  }
+}
+
 @layer utilities {
+
   @font-face {
     font-family: "Satoshi";
     src: url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
@@ -34,7 +63,7 @@
   body {
     margin: 0;
     font-family: "Satoshi", sans-serif;
-
+overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -42,5 +71,18 @@
   code {
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
+  }
+  @media (max-width:768px){
+    .main_class, .search {
+      display: none;
+    }
+  }@media (max-width:575px){
+    .main_class, .search {
+      display: none;
+    }
+  } @media (max-width:320px){
+    .main_class ,.search {
+      display: none;
+    }
   }
 }

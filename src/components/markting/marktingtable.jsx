@@ -110,7 +110,7 @@ const Marktingtable = () => {
     ];
 
     return (
-        <div className="mt-7.5 flex items-center gap-4 md:gap-6 2xl:gap-7.5">
+        <div className="mt-7.5 flex flex-wrap items-center gap-4 md:gap-6 2xl:gap-7.5">
 
             <div className="w-full bg-white rounded-md shadow-md lg:w-7/12 my-7 ">
                 <div className="px-5 pt-6 overflow-hidden pb-2.5 sm:px-7 xl:pb-1 ">
