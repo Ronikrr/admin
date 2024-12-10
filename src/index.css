@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  @font-face {
+    font-family: "Satoshi";
+    src: url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
+        format("woff2"),
+      url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff")
+        format("woff");
+    font-weight: normal;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Satoshi";
+    src: url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff2")
+        format("woff2"),
+      url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Black.woff")
+        format("woff");
+    font-weight: 900;
+    font-style: normal;
+  }
+  @font-face {
+    font-family: "Satoshi";
+    src: url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff2")
+        format("woff2"),
+      url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Bold.woff")
+        format("woff");
+    font-weight: 700;
+    font-style: normal;
+  }
+
+  body {
+    margin: 0;
+    font-family: "Satoshi", sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+      monospace;
+  }
+}
