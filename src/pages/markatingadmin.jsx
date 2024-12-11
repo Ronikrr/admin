@@ -77,7 +77,7 @@ const Dashboard = () => {
   }
 
   return (
-    <div className="p-5 lg:p-10 ">
+    <div className="p-5 lg:p-4 2xl:p-10 ">
       <div className="w-full">
         {/* Header */}
         <div className="flex flex-col gap-2 mb-8 sm:flex-row sm:items-center sm:justify-between">

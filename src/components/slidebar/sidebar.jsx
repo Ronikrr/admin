@@ -28,14 +28,14 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                 {
                     id: "crm", icon: <FaChartLine />, label: "CRM"
                     , subsubmenu: [
-                        { id: "mainadmin", icon: <FaChartBar />, label: "CRM Home", link: "/crm" },
+                        { id: "crmhome", icon: <FaChartBar />, label: "CRM Home", link: "/crm" },
 
                     ],
                 },
                 {
                     id: "Marketing", icon: <FaBullhorn />, label: "Marketing",
                     subsubmenu: [
-                        { id: "mainadmin", icon: <FaChartBar />, label: "Marketing Home", link: "/marketing" },
+                        { id: "marktinghome", icon: <FaChartBar />, label: "Marketing Home", link: "/marketing" },
 
                     ]
                 },
@@ -72,20 +72,19 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                         <div key={menu.id}>
                             {/* Main Menu */}
                             <div
-                                className={`flex items-center p-3 justify-between rounded cursor-pointer ${activeMenu === menu.id ? "bg-gray-900" : "bg-gray-800"
-                                    }`}
+                                className={`flex items-center p-3 justify-between rounded cursor-pointer `}
                                 onClick={() => handleMenuClick(menu.id)}
                             >
                                 <div className="flex items-center space-x-3">
                                     <span>{menu.icon}</span>
                                     <span className="font-semibold">{menu.label}</span>
                                 </div>
-                                {menu.subMenu && (activeMenu === menu.id ? <FaAngleUp /> : <FaAngleDown />)}
+
                             </div>
 
                             {/* Submenu and Subsubmenu Directly Under Main Menu */}
-                            {activeMenu === menu.id && menu.subMenu && (
-                                <ul className="pl-8 mt-2 space-y-2">
+                            {/* {activeMenu === menu.id && menu.subMenu && ( */}
+                            <ul className="mt-2 space-y-2 ">
                                     {menu.subMenu.map((subMenu) => (
                                         <li key={subMenu.id}>
                                             {/* Submenu */}
@@ -123,7 +122,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                         </li>
                                     ))}
                                 </ul>
-                            )}
+                            {/* )} */}
                         </div>
                     ))}
                 </nav>

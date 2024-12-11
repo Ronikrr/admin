@@ -3,7 +3,9 @@
 @tailwind utilities;
 
 @layer components {
-  
+  .width_class{
+    height: 320px !important;
+  }
   @screen 2xl {
     .main_class,
     .search {

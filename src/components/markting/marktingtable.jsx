@@ -111,9 +111,9 @@ const Marktingtable = () => {
     ];
 
     return (
-        <div className="mt-7.5 flex flex-col lg:flex-row items-center gap-4 md:gap-6 2xl:gap-7.5">
+        <div className="mt-7 flex flex-col xl:flex-row items-center gap-4 md:gap-6 2xl:gap-7.5">
 
-            <div className="w-full bg-white rounded-md shadow-md lg:w-7/12 my-7 ">
+            <div className="w-full bg-white rounded-md shadow-md xl:w-7/12 my-7 ">
                 <div className="px-5 pt-6 overflow-hidden pb-2.5 sm:px-7 xl:pb-1 ">
                     <div className="flex flex-col gap-2 mb-8 sm:flex-row sm:items-center sm:justify-between">
                         <div className="">
@@ -139,7 +139,7 @@ const Marktingtable = () => {
                     </div>
                     <table className="w-full text-left table-auto ">
                         <thead>
-                            <tr className="text-gray-600 text-[16px] uppercase leading-[1.5] bg-gray-100 *:text-center ">
+                            <tr className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 *:text-center ">
                                 <th className="p-2.5 xl:p-4">Source</th>
                                 <th className="p-2.5 xl:p-4">visiter</th>
                                 <th className="p-2.5 xl:p-4">Revenues</th>
@@ -159,7 +159,7 @@ const Marktingtable = () => {
                                             alt={lead.name}
                                             className="w-10 h-10 mr-3 rounded-full"
                                         />
-                                        <span>{lead.name}</span>
+                                        <span className="hidden md:block" >{lead.name}</span>
                                     </td>
                                     <td className="p-2.5 text-center xl:p-4 text-gray-700">{lead.email}</td>
                                     <td className={`p-2.5 text-center xl:p-4 ${lead.project.startsWith('-') ? 'text-red-500' : 'text-green-500'} `}> Rs{lead.project}</td>
@@ -172,7 +172,7 @@ const Marktingtable = () => {
                 </div>
             </div>
 
-            <div className="w-full md:w-5/12">
+            <div className="w-full xl:w-5/12 mb-7 xl:mb-0 ">
                 <div className="bg-white border rounded-md border border-[rgb(226,232,240)] shadow-md">
                     <div className="flex flex-col gap-2 px-6 py-6 sm:flex-row border-b border-[rgb(226,232,240)] sm:items-center sm:justify-between">
                         {/* <div className="px-6 py-6 flex justify-between items-center  border-b border-[rgb(226,232,240)]  "> */}
@@ -189,7 +189,7 @@ const Marktingtable = () => {
                         {/* </div> */}
                             
                     </div>
-                    <div className="px-6 py-4 w-full h-[420px] ">
+                    <div className="w-full px-6 py-4 md:h-[320px] 2xl:h-[420px] ">
                         <Bar data={data} options={options} />
                     </div>
                 </div>

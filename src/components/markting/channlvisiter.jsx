@@ -196,8 +196,8 @@ const Channlvisiter = () => {
     setisopen(!isopen);
   }
   return (
-    <div className="mt-7.5 flex items-center gap-4 md:gap-6 2xl:gap-7.5">
-      <div className="w-full md:w-6/12">
+    <div className="mt-7.5 w-full flex flex-col xl:flex-row items-center gap-4 md:gap-6 2xl:gap-7.5">
+      <div className="w-full xl:w-6/12">
         <div className="bg-white border rounded-md border border-[rgb(226,232,240)] shadow-md">
           <div className="flex flex-col gap-2 px-6 py-5 sm:flex-row border-b border-[rgb(226,232,240)] sm:items-center sm:justify-between">
 
@@ -231,13 +231,13 @@ const Channlvisiter = () => {
                 <button
                   key={index}
                   onClick={() => setactivefilter(filter.name)}
-                  className={`px-4 py-2 flex items-center gap-6 rounded-md ${filter.name === activefilter
+                  className={`px-4 py-2 flex items-center  md:gap-6 rounded-md ${filter.name === activefilter
                     ? "bg-blue-100 text-blue-500 border border-blue-500 "
                     : "border border-gray-100 text-gray-700 hover:bg-blue-100 hover:text-blue-500 hover:border hover:border-blue-500 "
                     }`}
                 >
                   {filter.icon}
-                  <span>{filter.name}</span>
+                  <span className='hidden md:block' >{filter.name}</span>
                 </button>
               ))}
             </div>
@@ -275,7 +275,7 @@ const Channlvisiter = () => {
           </div>
         </div>
       </div>
-      <div className="w-full md:w-6/12">
+      <div className="w-full xl:w-6/12">
         <div className="bg-white border rounded-md border border-[rgb(226,232,240)] shadow-md">
           <div className="flex flex-col gap-2 px-6 py-4 sm:flex-row border-b border-[rgb(226,232,240)] sm:items-center sm:justify-between">
 

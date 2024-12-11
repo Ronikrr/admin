@@ -108,7 +108,7 @@ const Campng = () => {
     
     return (
         <div className='flex flex-col items-center gap-4 xl:flex-row mt-7 md:gap-6 2xl:gap-7' >
-            <div className="w-full md:w-5/12">
+            <div className="w-full xl:w-5/12">
                 <div className="bg-white border rounded-sm border border-[rgb(226,232,240)] shadow-default">
                     <div className="flex flex-col gap-2 px-6 py-5 sm:flex-row sm:items-center sm:justify-between">
                         <div className="">
@@ -135,7 +135,7 @@ const Campng = () => {
                     </div>
                 </div>
             </div>
-            <div className="w-full md:w-7/12">
+            <div className="w-full xl:w-7/12">
                 <div className="bg-white border rounded-sm shadow-default">
                     <div className="flex flex-col gap-2 px-6 py-4 border-b border-[rgb(226,232,240)] sm:flex-row sm:items-center sm:justify-between">
                         <div className="">
