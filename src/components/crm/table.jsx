@@ -59,12 +59,12 @@ const LeadsReport = () => {
         <table className="w-full text-left table-auto">
           <thead>
             <tr className="text-gray-600">
-              <th className="px-6 py-3">Name</th>
-              <th className="px-6 py-3">Email</th>
-              <th className="px-6 py-3">Project</th>
-              <th className="px-6 py-3">Duration</th>
-              <th className="px-6 py-3">Status</th>
-              <th className="px-6 py-3">Actions</th>
+              <th className="px-2 py-2 md:py-4 md:px-6">Name</th>
+              <th className="px-2 py-2 md:py-4 md:px-6">Email</th>
+              <th className="px-2 py-2 md:py-4 md:px-6 main_class ">Project</th>
+              <th className="px-2 py-2 md:py-4 md:px-6 main_class ">Duration</th>
+              <th className="px-2 py-2 md:py-4 md:px-6">Status</th>
+              <th className="px-2 py-2 md:py-4 md:px-6">Actions</th>
             </tr>
           </thead>
           <tbody>
@@ -73,18 +73,18 @@ const LeadsReport = () => {
                 key={index}
                 className="transition duration-150 border-t hover:bg-gray-50"
               >
-                <td className="flex items-center px-6 py-4">
+                <td className="flex items-center justify-center px-2 py-2 md:py-4 md:px-6">
                   <img
                     src={lead.image}
                     alt={lead.name}
                     className="w-10 h-10 mr-3 rounded-full"
                   />
-                  <span>{lead.name}</span>
+                  <span className="main_class" >{lead.name}</span>
                 </td>
-                <td className="px-6 py-4 text-gray-700">{lead.email}</td>
-                <td className="px-6 py-4 text-gray-700">{lead.project}</td>
-                <td className="px-6 py-4 text-gray-700">{lead.duration}</td>
-                <td className="px-6 py-4">
+                <td className="px-2 py-2 text-gray-700 md:py-4 md:px-6">{lead.email}</td>
+                <td className="px-2 py-2 text-gray-700 md:py-4 md:px-6 main_class ">{lead.project}</td>
+                <td className="px-2 py-2 text-gray-700 md:py-4 md:px-6 main_class ">{lead.duration}</td>
+                <td className="px-2 py-2 md:py-4 md:px-6">
                   <span
                     className={`px-3 py-1 text-sm rounded-full ${ lead.statusColor } `}
                   >

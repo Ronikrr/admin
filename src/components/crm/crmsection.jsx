@@ -50,7 +50,7 @@ const options = {
 
 const Crmsection = () => {
   return (
-    <div className="flex items-center gap-4 mt-7 md:gap-6 2xl:gap-7">
+    <div className="flex flex-col items-center gap-4 xl:flex-row mt-7 md:gap-6 2xl:gap-7">
       <div className="w-full xl:w-7/12">
         <div className="w-full px-5 py-5 bg-white border rounded-sm shadow-sm sm:px-7 border-stroke md:py-8">
           <div className="flex flex-col gap-2 mb-6 sm:flex-row sm:items-center sm:justify-between">

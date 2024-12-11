@@ -5,8 +5,9 @@ import { RiNotification2Line } from "react-icons/ri";
 import { CiUser } from "react-icons/ci";
 import { RiMessage2Line } from "react-icons/ri";
 import { TiContacts } from "react-icons/ti";
+import { FaBars } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
-const Header = () => {
+const Header = ({ toogleslidebar }) => {
     const [isopen, setisopen] = useState(false);
     const [isuser, setisuseropen] = useState(false);
     const [ismessageopen, setismessageopen] = useState(false);
@@ -30,7 +31,9 @@ const Header = () => {
     return (
         <div className='h-[80px] w-screen md:w-full flex px-11 py-4  items-center justify-center bg-[#fff] '>
             <div className="flex items-center justify-center w-full lg:justify-between">
-                <div className="block md:hidden"></div>
+                <div className="main_bars xl:hidden ">
+                    <FaBars className='cursor-pointer ' onClick={toogleslidebar} />
+                </div>
                 <div className="flex items-center space-x-3 search">
                     <div className="">
                         <IoIosSearch className='text-[20px]' />

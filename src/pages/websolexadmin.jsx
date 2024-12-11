@@ -16,7 +16,7 @@ import { HiOutlineUsers } from "react-icons/hi2";
 const websolexhome = () => {
     return (
         <>
-            <div className=" w-full 2xl:px-[50px] 2xl:pb-0 2xl:pt-[125px] md:p-6 bg-gray-100">
+            <div className=" w-full 2xl:p-[50px] 2xl:pb-0  md:p-6 bg-gray-100">
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
                     <div class="rounded-sm border border-stroke bg-white py-6 px-7 shadow-md ">
                         <div class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100">

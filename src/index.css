@@ -3,35 +3,64 @@
 @tailwind utilities;
 
 @layer components {
+  
   @screen 2xl {
-    .main_class {
-      @apply block;
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
+      display: none;
     }
   }
+  /* @media (max-width: 1400px) {
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
+      display: none;
+    }
+  } */
   @screen xl {
-    .main_class {
-      @apply block;
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
+      display: none;
     }
   }
   @screen lg {
-    .main_class {
-      @apply hidden;
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
+      display: none;
     }
   }
   @screen md {
-    .main_class {
-      @apply hidden;
+    .main_class,
+    .search {
+      display: none;
+    }
+    .main_bars {
+      display: block;
     }
   }
   @screen sm {
-    .main_class {
-      @apply hidden;
+    .main_class,
+    .search {
+      display: none;
+    }
+    .main_bars {
+      display: block;
     }
   }
 }
 
 @layer utilities {
-
   @font-face {
     font-family: "Satoshi";
     src: url("./assets/Satoshi_Complete/Satoshi_Complete/Fonts/WEB/fonts/Satoshi-Regular.woff2")
@@ -63,7 +92,7 @@
   body {
     margin: 0;
     font-family: "Satoshi", sans-serif;
-overflow-x: hidden;
+    overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
@@ -72,17 +101,59 @@ overflow-x: hidden;
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
       monospace;
   }
-  @media (max-width:768px){
-    .main_class, .search {
+
+  @media (max-width: 1556px) {
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
       display: none;
     }
-  }@media (max-width:575px){
-    .main_class, .search {
+  }
+  @media (max-width: 1400px) {
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
       display: none;
     }
-  } @media (max-width:320px){
-    .main_class ,.search {
+  }
+  @media (max-width: 1280px) {
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
       display: none;
+    }
+  }
+  @media (max-width: 1024px) {
+    .main_class,
+    .search {
+      display: block;
+    }
+    .main_bars {
+      display: none;
+    }
+  }
+  @media (max-width: 768px) {
+    .main_class,
+    .search {
+      display: none;
+    }
+    .main_bars {
+      display: block;
+    }
+  }
+  @media (max-width: 640px) {
+    .main_class,
+    .search {
+      display: none;
+    }
+    .main_bars {
+      display: block;
     }
   }
 }

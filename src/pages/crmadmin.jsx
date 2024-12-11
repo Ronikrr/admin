@@ -285,12 +285,12 @@ const CircularProgress = ({ percentage, color }) => {
 // Card Component
 const StatCard = ({ value, title, percentage, change, color }) => {
     return (
-        <div className="flex items-center justify-between w-full bg-white rounded-lg shadow-md p-7">
-            <div>
+        <div className="flex items-center justify-between w-full bg-white rounded-lg shadow-md p-7 lg:p-5 2xl:p-7 ">
+            <div className="w-6/12" >
                 <h2 className="text-3xl font-bold text-gray-800">{value}</h2>
                 <p className="text-sm text-gray-500">{title}</p>
                 <div
-                    className={`mt-2 flex items-center text-sm ${change > 0 ? "text-green-500" : "text-red-500"
+                    className={`mt-2 flex items-center flex-col xl:flex-row text-sm ${change > 0 ? "text-green-500" : "text-red-500"
                         }`}
                 >
                     <span
@@ -302,7 +302,7 @@ const StatCard = ({ value, title, percentage, change, color }) => {
                     <span className="ml-2 text-gray-500">Since last week</span>
                 </div>
             </div>
-            <div>
+            <div className="flex justify-center w-6/12" >
                 <CircularProgress percentage={percentage} color={color} />
             </div>
         </div>
@@ -337,7 +337,7 @@ const Dashboard = () => {
 
 
     return (
-        <div className="p-10">
+        <div className="p-5 lg:p-[0.5rem] 2xl:p-10 ">
             <div className="">
                 {/* Header */}
                 <div className="flex flex-col gap-2 mb-8 sm:flex-row sm:items-center sm:justify-between">
