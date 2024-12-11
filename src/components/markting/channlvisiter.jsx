@@ -243,7 +243,7 @@ const Channlvisiter = () => {
             </div>
 
             {/* Table */}
-            <table className="w-full border border-collapse border-gray-200">
+            <table className="w-full border border-collapse">
               <thead className="bg-gray-100">
                 <tr>
                   <th className="p-3 text-left text-gray-700">Email Title</th>
@@ -255,8 +255,6 @@ const Channlvisiter = () => {
                 {fliterdata.map((email, index) => (
                   <tr
                     key={index}
-                    className={`border-b ${index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                      }`}
                   >
                     <td className="p-3">{email.title}</td>
                     <td className="p-3">

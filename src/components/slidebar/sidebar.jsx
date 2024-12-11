@@ -18,7 +18,7 @@ function Sidebar() {
                     icon: <MdBusiness />,
                     label: "Websolex",
                     subsubmenu: [
-                        { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/mainadmin" },
+                        { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/" },
                         { id: "data", icon: <FaDatabase />, label: "Data", link: "/dashboard/ecommerce/data" },
                         { id: "crm", icon: <FaLaptop />, label: "CRM", link: "/dashboard/ecommerce/crm" },
                         { id: "stocks", icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
