@@ -38,6 +38,7 @@ const Marktingtable = () => {
     // Chart options
     const options = {
         responsive: true,
+        maintainAspectRatio: false,
         plugins: {
             legend: {
                 display: false, // Hide legend
@@ -110,7 +111,7 @@ const Marktingtable = () => {
     ];
 
     return (
-        <div className="mt-7.5 flex flex-wrap items-center gap-4 md:gap-6 2xl:gap-7.5">
+        <div className="mt-7.5 flex flex-col lg:flex-row items-center gap-4 md:gap-6 2xl:gap-7.5">
 
             <div className="w-full bg-white rounded-md shadow-md lg:w-7/12 my-7 ">
                 <div className="px-5 pt-6 overflow-hidden pb-2.5 sm:px-7 xl:pb-1 ">
@@ -172,7 +173,7 @@ const Marktingtable = () => {
             </div>
 
             <div className="w-full md:w-5/12">
-                <div className="bg-white border rounded-sm border border-[rgb(226,232,240)] shadow-default">
+                <div className="bg-white border rounded-md border border-[rgb(226,232,240)] shadow-md">
                     <div className="flex flex-col gap-2 px-6 py-6 sm:flex-row border-b border-[rgb(226,232,240)] sm:items-center sm:justify-between">
                         {/* <div className="px-6 py-6 flex justify-between items-center  border-b border-[rgb(226,232,240)]  "> */}
                             <div className="">
@@ -188,8 +189,8 @@ const Marktingtable = () => {
                         {/* </div> */}
                             
                     </div>
-                    <div className="px-6 pt-4">
-                        <Bar data={data} className="h-[500px]"  options={options} />
+                    <div className="px-6 py-4 w-full h-[420px] ">
+                        <Bar data={data} options={options} />
                     </div>
                 </div>
             </div>

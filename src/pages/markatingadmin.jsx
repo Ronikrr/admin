@@ -106,7 +106,7 @@ const Dashboard = () => {
         </div>
 
         {/* Cards */}
-        <div className="2xl:gap-7.5 flex flex-wrap gap-4  md:gap-6 ">
+        <div className="2xl:gap-7.5 flex flex-col lg:flex-row gap-4  md:gap-6 ">
           {stats.map((stat, index) => (
             <StatCard key={index} {...stat} />
           ))}
