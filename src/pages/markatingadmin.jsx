@@ -1,24 +1,13 @@
-  import React, { useState } from "react";
-  import Crmsection from "../components/crm/crmsection";
-  import Table from "../components/crm/table";
-  // import { TfiTimer } from "react-icons/tfi";
-
-  import { PiDotsThreeOutlineFill } from "react-icons/pi";
-  import { FaRegEdit } from "react-icons/fa";
-  import { RiDeleteBin6Line } from "react-icons/ri";
-  import { LiaChartBarSolid } from "react-icons/lia";
-  import { HiOutlineUsers } from "react-icons/hi2";
-  import { LiaCoinsSolid } from "react-icons/lia";
-  import Marktingtable from "../components/markting/marktingtable";
-  // Register the ChartJS components
-  // import { MdOutlineCalendarMonth } from "react-icons/md";
-import Campng from "../components/crm/campng";
+import React, { useState } from "react";
+import { PiDotsThreeOutlineFill } from "react-icons/pi";
+import { FaRegEdit } from "react-icons/fa";
+import { RiDeleteBin6Line } from "react-icons/ri";
+import { LiaChartBarSolid } from "react-icons/lia";
+import { HiOutlineUsers } from "react-icons/hi2";
+import { LiaCoinsSolid } from "react-icons/lia";
+import Marktingtable from "../components/markting/marktingtable";
 import Channlvisiter from "../components/markting/channlvisiter";
-  // Circular Progress Component
-
-
-// Card Component
-const StatCard = ({ value, title, percentage, change, color,icon }) => {
+const StatCard = ({ value, title, percentage, change, color, icon }) => {
   return (
     <div className="flex items-center justify-between w-full bg-white rounded-lg shadow-md p-7">
       <div>
