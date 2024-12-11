@@ -339,7 +339,7 @@ const Channlvisiter = () => {
                     to track your affiliate revenue.
                   </p>
                 </div>
-                {/* <span className="absolute left-8 -z-10 h-[300%] w-[1px] border-l  border-dashed border-[rgb(226,232,240)] "></span> */}
+
               </div> <div className="relative z-10 flex gap-5">
                 <div className="w-full h-16 max-w-16 rounded-full border-[3px] border-[rgb(226,232,240)] ">
                   <img src="https://react-demo.tailadmin.com/assets/user-14-eba44d22.png" alt="" />
@@ -356,7 +356,7 @@ const Channlvisiter = () => {
                     to track your affiliate revenue.
                   </p>
                 </div>
-                {/* <span className="absolute left-8 -z-10 h-[300%] w-[1px] border-l  border-dashed border-[rgb(226,232,240)] "></span> */}
+
               </div>
             </div>
           </div>
