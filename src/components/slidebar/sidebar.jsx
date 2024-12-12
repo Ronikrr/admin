@@ -22,7 +22,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     subsubmenu: [
                         { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/" },
                         { id: "valuedclient", icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
-                        { id: "crm", icon: <FaLaptop />, label: "CRM", link: "/dashboard/ecommerce/crm" },
+                        { id: "latestworkadd", icon: <FaLaptop />, label: "CRM", link: "/websolex/latestworkadd" },
                         { id: "stocks", icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
                     ],
                 },

@@ -30,6 +30,7 @@ import Header from './components/header/header';
 import Crm from './pages/crmadmin';
 import Markating from './pages/markatingadmin';
 import Valuedclientadd from './pages/valuedclientadd';
+import Latestworkadd from './pages/latestworkadd';
 
 function App() {
   const [isopensidebar, setisopensidebar] = useState(false);
@@ -56,6 +57,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<Websolexadmin />} />
                 <Route path="/websolex/valuedclient" element={<Valuedclientadd />} />
+                <Route path="/websolex/latestworkadd" element={<Latestworkadd />} />
                 <Route path='/crm' element={<Crm />} />
                 <Route path='/marketing' element={<Markating />} />
 
