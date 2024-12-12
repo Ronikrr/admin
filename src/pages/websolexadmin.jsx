@@ -5,6 +5,7 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { MdOutlineShoppingBag } from "react-icons/md";
 import { GoPeople } from "react-icons/go";
 import Sectiontwo from "../components/websolex/section_two"
+import Sectionthree from "../components/websolex/section_three";
 const Websolexhome = () => {
     const first = [
         {
@@ -79,7 +80,7 @@ const Websolexhome = () => {
 
 
             <Sectiontwo />
-
+            <Sectionthree />
         </div>
     );
 };
