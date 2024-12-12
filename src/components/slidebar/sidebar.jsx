@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { FaAngleUp, FaAngleDown, FaChartBar, FaDatabase, FaLaptop, FaBox, FaChartLine, FaBullhorn } from "react-icons/fa";
+import { FaAngleUp, FaAngleDown, FaChartBar, FaLaptop, FaBox, FaChartLine, FaBullhorn } from "react-icons/fa";
 import { MdDashboard, MdBusiness } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
