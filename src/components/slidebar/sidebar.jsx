@@ -4,6 +4,7 @@ import { FaAngleUp, FaAngleDown, FaChartBar, FaDatabase, FaLaptop, FaBox, FaChar
 import { MdDashboard, MdBusiness } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
+import { FaHandshake } from "react-icons/fa";
 function Sidebar({ isopensidebar, closeslidebar }) {
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -20,7 +21,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     label: "Websolex",
                     subsubmenu: [
                         { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/" },
-                        { id: "data", icon: <FaDatabase />, label: "Data", link: "/dashboard/ecommerce/data" },
+                        { id: "valuedclient", icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
                         { id: "crm", icon: <FaLaptop />, label: "CRM", link: "/dashboard/ecommerce/crm" },
                         { id: "stocks", icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
                     ],

@@ -29,6 +29,7 @@ import Websolexadmin from './pages/websolexadmin';
 import Header from './components/header/header';
 import Crm from './pages/crmadmin';
 import Markating from './pages/markatingadmin';
+import Valuedclientadd from './pages/valuedclientadd';
 
 function App() {
   const [isopensidebar, setisopensidebar] = useState(false);
@@ -54,6 +55,7 @@ function App() {
             <div className="w-screen overflow-x-hidden sm:w-full">
               <Routes>
                 <Route path="/" element={<Websolexadmin />} />
+                <Route path="/websolex/valuedclient" element={<Valuedclientadd />} />
                 <Route path='/crm' element={<Crm />} />
                 <Route path='/marketing' element={<Markating />} />
 
