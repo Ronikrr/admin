@@ -46,16 +46,37 @@ function Sidebar({ isopensidebar, closeslidebar }) {
     ];
 
     const handleMenuClick = (menuId) => {
-        setActiveMenu(menuId === activeMenu ? null : menuId);
+        if (menuId === activeMenu) {
+            // If the same menu is clicked again, close it
+            setActiveMenu(null);
+            setActiveSubMenu(null); // Close all submenus
+            setActiveSubSubMenu(null); // Close all sub-submenus
+        } else {
+            // Open the clicked menu and close others
+            setActiveMenu(menuId);
+            setActiveSubMenu(null); // Reset submenus
+            setActiveSubSubMenu(null); // Reset sub-submenus
+        }
     };
 
     const handleSubMenuClick = (subMenuId) => {
-        setActiveSubMenu(subMenuId === activeSubMenu ? null : subMenuId);
+        if (subMenuId === activeSubMenu) {
+            // If the same submenu is clicked again, close it
+            setActiveSubMenu(null);
+            setActiveSubSubMenu(null); // Close sub-submenus
+        } else {
+            // Open the clicked submenu and close others
+            setActiveSubMenu(subMenuId);
+            setActiveSubSubMenu(null); // Reset sub-submenus
+        }
     };
 
+
     const handleSubSubMenuClick = (subSubMenuId) => {
+        // Toggle the clicked sub-submenu
         setActiveSubSubMenu(subSubMenuId === activeSubSubMenu ? null : subSubMenuId);
     };
+
 
     return (
         <div className="relative">

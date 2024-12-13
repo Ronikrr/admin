@@ -1,5 +1,5 @@
 import React from 'react'
-import Valuedclientsection from '../components/websolex/valuedclientsection'
+import Valuedclientsection from '../../components/websolex/valuedclientsection'
 const valuedclientadd = () => {
     return (
         <Valuedclientsection />

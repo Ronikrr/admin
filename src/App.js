@@ -29,8 +29,8 @@ import Websolexadmin from './pages/websolexadmin';
 import Header from './components/header/header';
 import Crm from './pages/crmadmin';
 import Markating from './pages/markatingadmin';
-import Valuedclientadd from './pages/valuedclientadd';
-import Latestworkadd from './pages/latestworkadd';
+import Valuedclientadd from './pages/websolex/valuedclientadd';
+import Latestworkadd from './pages/websolex/latestworkadd';
 
 function App() {
   const [isopensidebar, setisopensidebar] = useState(false);
