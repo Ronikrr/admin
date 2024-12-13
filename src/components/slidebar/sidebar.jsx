@@ -5,6 +5,7 @@ import { MdDashboard, MdBusiness } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
+import { MdOutlineWorkspacePremium } from "react-icons/md";
 function Sidebar({ isopensidebar, closeslidebar }) {
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -22,7 +23,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     subsubmenu: [
                         { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/" },
                         { id: "valuedclient", icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
-                        { id: "latestworkadd", icon: <FaLaptop />, label: "CRM", link: "/websolex/latestworkadd" },
+                        { id: "latestworkadd", icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
                         { id: "stocks", icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
                     ],
                 },
@@ -96,7 +97,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                             >
                                                 <div className="flex items-center space-x-3">
                                                     <span>{subMenu.icon}</span>
-                                                    <span>{subMenu.label}</span>
+                                                    <span className="capitalize" >{subMenu.label}</span>
                                                 </div>
                                                 {subMenu.subsubmenu && (activeSubMenu === subMenu.id ? <FaAngleUp /> : <FaAngleDown />)}
                                             </div>
@@ -114,7 +115,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                         >
                                                             <Link to={subsubmenu.link || "#"} className="flex items-center space-x-3" >
                                                                 <span>{subsubmenu.icon}</span>
-                                                                <span>{subsubmenu.label}</span>
+                                                                <span className="capitalize" >{subsubmenu.label}</span>
                                                             </Link>
                                                         </li>
                                                     ))}
