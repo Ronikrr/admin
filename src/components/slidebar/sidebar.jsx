@@ -12,7 +12,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
     const [activeSubSubMenu, setActiveSubSubMenu] = useState(null);
     const menuItems = [
         {
-            id: "Dashboard",
+            id: "1",
             icon: <MdDashboard />,
             label: "Dashboard",
             subMenu: [
@@ -21,23 +21,23 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     icon: <MdBusiness />,
                     label: "Websolex",
                     subsubmenu: [
-                        { id: "mainadmin", icon: <FaChartBar />, label: "Websolex Home", link: "/" },
-                        { id: "valuedclient", icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
-                        { id: "latestworkadd", icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
-                        { id: "stocks", icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
+                        { id: 1, icon: <FaChartBar />, label: "Websolex Home", link: "/" },
+                        { id: 2, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
+                        { id: 3, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
+                        { id: 4, icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
                     ],
                 },
                 {
                     id: "crm", icon: <FaChartLine />, label: "CRM"
                     , subsubmenu: [
-                        { id: "crmhome", icon: <FaChartBar />, label: "CRM Home", link: "/crm" },
+                        { id: 1, icon: <FaChartBar />, label: "CRM Home", link: "/crm" },
 
                     ],
                 },
                 {
                     id: "Marketing", icon: <FaBullhorn />, label: "Marketing",
                     subsubmenu: [
-                        { id: "marktinghome", icon: <FaChartBar />, label: "Marketing Home", link: "/marketing" },
+                        { id: 1, icon: <FaChartBar />, label: "Marketing Home", link: "/marketing" },
 
                     ]
                 },
@@ -105,8 +105,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
 
                             </div>
 
-                            {/* Submenu and Subsubmenu Directly Under Main Menu */}
-                            {/* {activeMenu === menu.id && menu.subMenu && ( */}
+
                             <ul className="mt-2 space-y-2 ">
                                     {menu.subMenu.map((subMenu) => (
                                         <li key={subMenu.id}>
@@ -134,7 +133,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                                 }`}
                                                             onClick={() => handleSubSubMenuClick(subsubmenu.id)}
                                                         >
-                                                            <Link to={subsubmenu.link || "#"} className="flex items-center space-x-3" >
+                                                            <Link to={subsubmenu.link} className="flex items-center space-x-3" >
                                                                 <span>{subsubmenu.icon}</span>
                                                                 <span className="capitalize" >{subsubmenu.label}</span>
                                                             </Link>
@@ -145,7 +144,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                         </li>
                                     ))}
                                 </ul>
-                            {/* )} */}
+
                         </div>
                     ))}
                 </nav>

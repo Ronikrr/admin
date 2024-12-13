@@ -31,8 +31,9 @@ import Crm from './pages/crmadmin';
 import Markating from './pages/markatingadmin';
 import Valuedclientadd from './pages/websolex/valuedclientadd';
 import Latestworkadd from './pages/websolex/latestworkadd';
+import Notfound from './pages/notfound';
 
-function App() {
+const Layout = ({ children }) => {
   const [isopensidebar, setisopensidebar] = useState(false);
   const toogleslidebar = () => {
     setisopensidebar(!isopensidebar);
@@ -41,8 +42,8 @@ function App() {
     setisopensidebar(false);
   }
   return (
-    <div className="bg-[#f1f5f9] w-full ">
-      <Router>
+    (
+      <>
         <div className="flex w-screen  sm:w-full h-full lg:h-screen bg-[#f1f5f9] ">
           {/* Sidebar */}
           <Sidebar closeslidebar={closeslidebar} isopensidebar={isopensidebar} />
@@ -54,18 +55,48 @@ function App() {
 
             {/* Routes */}
             <div className="w-screen overflow-x-hidden sm:w-full">
-              <Routes>
-                <Route path="/" element={<Websolexadmin />} />
-                <Route path="/websolex/valuedclient" element={<Valuedclientadd />} />
-                <Route path="/websolex/latestworkadd" element={<Latestworkadd />} />
-                <Route path='/crm' element={<Crm />} />
-                <Route path='/marketing' element={<Markating />} />
-
-                {/* Add other routes here */}
-              </Routes>
+              <main className='pl-0' >{children}</main>
             </div>
           </div>
         </div>
+      </>
+    )
+  )
+}
+function App() {
+  const [isopensidebar, setisopensidebar] = useState(false);
+  const toogleslidebar = () => {
+    setisopensidebar(!isopensidebar);
+  }
+  const closeslidebar = () => {
+    setisopensidebar(false);
+  }
+  return (
+    <div className="bg-[#f1f5f9] w-full ">
+      <Router>
+        {/* <div className="flex w-screen  sm:w-full h-full lg:h-screen bg-[#f1f5f9] ">
+          
+          <Sidebar closeslidebar={closeslidebar} isopensidebar={isopensidebar} />
+
+        
+          <div className="flex flex-col flex-1">
+        
+            <Header toogleslidebar={toogleslidebar} />
+
+           
+          <div className="w-screen overflow-x-hidden sm:w-full"> */}
+              <Routes>
+          <Route path='/' element={<Layout><Websolexadmin /></Layout>} />
+          <Route path='/websolex/valuedclient' element={<Layout><Valuedclientadd /></Layout>} />
+          <Route path='/websolex/latestworkadd' element={<Layout><Latestworkadd /></Layout>} />
+          <Route path='/crm' element={<Layout><Crm /></Layout>} />
+          <Route path='/marketing' element={<Layout><Markating /></Layout>} />
+          <Route path='*' element={<Notfound />} />
+
+              </Routes>
+        {/* </div>
+          </div>
+        </div> */}
       </Router>
     </div>
   );
