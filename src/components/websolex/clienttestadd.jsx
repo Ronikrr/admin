@@ -5,7 +5,8 @@ import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoMdAdd } from 'react-icons/io';
 import Input from '../ui/input'
 import Primary from '../ui/primary'
-import Seconduray from '../ui/seconduray'
+import Seconduray from '../ui/seconduray';
+import Breadcrumb from '../ui/breadcrumb';
 const Clienttestadd = () => {
     const [isOpenAddModel, setIsOpenAddModel] = useState(false);
     const [imageFile, setImageFile] = useState(null);
@@ -98,8 +99,9 @@ const Clienttestadd = () => {
 
     return (
         <div className="w-full bg-gray-100 ">
-            <div className="">
-                <h1 className='capitalize text-[26px] font-semibold pb-6 '>testimonial</h1>
+            <div className="flex items-center justify-between mb-4">
+                <h1 className='capitalize text-[26px] font-semibold  '>testimonial</h1>
+                <Breadcrumb />
             </div>
 
             {/* Most Recent Lead */}

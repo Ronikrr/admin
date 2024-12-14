@@ -127,13 +127,14 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                     {subMenu.subsubmenu.map((subsubmenu) => (
                                                         <li
                                                             key={subsubmenu.id}
-                                                            className={`flex items-center p-2 space-x-3 rounded cursor-pointer ${activeSubSubMenu === subsubmenu.id
-                                                                ? "bg-gray-700"
-                                                                : "bg-gray-900"
-                                                                }`}
-                                                            onClick={() => handleSubSubMenuClick(subsubmenu.id)}
                                                         >
-                                                            <Link to={subsubmenu.link} className="flex items-center block gap-2 space-x-3 capitalize" >
+                                                            <Link to={subsubmenu.link}
+                                                                className={`flex items-center capitalize p-2 gap-3 rounded cursor-pointer ${activeSubSubMenu === subsubmenu.id
+                                                                    ? "bg-gray-700"
+                                                                    : "bg-gray-900"
+                                                                    }`}
+                                                                onClick={() => handleSubSubMenuClick(subsubmenu.id)}
+                                                            >
                                                                 {subsubmenu.icon}
                                                                 {subsubmenu.label}
                                                             </Link>

@@ -3,7 +3,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoMdAdd } from 'react-icons/io';
-
+import Breadcrumb from '../ui/breadcrumb'
 const Latestworkaddsection = () => {
     const [isopenaddmodel, setisopenaddmodel] = useState(false);
     const [imageFile, setImageFile] = useState(null);
@@ -85,8 +85,9 @@ const Latestworkaddsection = () => {
 
     return (
         <div className="w-full bg-gray-100 ">
-            <div className="">
-                <h1 className='capitalize text-[26px] font-semibold py-6 '>our work</h1>
+            <div className="flex items-center justify-between mb-2 ">
+                <h1 className='capitalize text-[26px] font-semibold '>our work</h1>
+                <Breadcrumb />
             </div>
 
             {/* Most Recent Lead */}

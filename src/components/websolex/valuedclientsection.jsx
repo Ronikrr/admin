@@ -3,6 +3,7 @@ import { FaRegEdit } from 'react-icons/fa';
 import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoMdAdd } from 'react-icons/io';
+import Breadcrumb from '../ui/breadcrumb'
 
 const Valuedclientsection = () => {
     const [isopenaddmodel, setisopenaddmodel] = useState(false);
@@ -58,8 +59,9 @@ const Valuedclientsection = () => {
     }
     return (
         <div className="w-full bg-gray-100 2xl:p-10 2xl:pb-0 md:p-6">
-            <div className="">
-                <h1 className='capitalize text-[26px] font-semibold py-6 '>trusted bond</h1>
+            <div className="flex items-center justify-between mb-4 ">
+                <h1 className='capitalize text-[26px] font-semibold'>trusted bond</h1>
+                <Breadcrumb />
             </div>
 
             {/* Most Recent Lead */}
