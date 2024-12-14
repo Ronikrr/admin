@@ -2,11 +2,10 @@ import React, { useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { RiNotification2Line } from "react-icons/ri";
-import { CiLogin, CiUser } from "react-icons/ci";
+import { CiUser } from "react-icons/ci";
 import { RiMessage2Line } from "react-icons/ri";
 import { TiContacts } from "react-icons/ti";
 import { FaBars } from "react-icons/fa6";
-import { IoSettingsOutline } from "react-icons/io5";
 import { TbLogin, TbLogin2 } from 'react-icons/tb';
 const Header = ({ toogleslidebar }) => {
     const [isopen, setisopen] = useState(false);
