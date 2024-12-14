@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -57,6 +57,11 @@ const Valuedclientsection = () => {
     const onclicklastopenall = () => {
         setisopenlastall(!isopenlastall)
     }
+    useEffect(() => {
+        setTimeout(() => {
+            setisopenlastall(false)
+        }, 3000);
+    })
     return (
         <div className="w-full bg-gray-100 2xl:p-10 2xl:pb-0 md:p-6">
             <div className="flex items-center justify-between mb-4 ">

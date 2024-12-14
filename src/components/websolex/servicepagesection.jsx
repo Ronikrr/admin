@@ -78,6 +78,11 @@ const Servicepagesection = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     };
+    useEffect(() => {
+        setTimeout(() => {
+            setIsOpenLastAll(false)
+        }, 3000);
+    })
     return (
         <div className="w-full bg-gray-100 ">
             <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
