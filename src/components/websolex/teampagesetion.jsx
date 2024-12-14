@@ -86,7 +86,7 @@ const Servicepagesection = () => {
     return (
         <div className="w-full bg-gray-100 ">
             <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
-                <h1 className='capitalize text-[26px] font-semibold  '>service page</h1>
+                <h1 className='capitalize text-[26px] font-semibold  '>team page</h1>
                 <Breadcrumb />
             </div>
 
@@ -165,29 +165,29 @@ const Servicepagesection = () => {
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
 
-                    <div className="flex flex-col w-full">
-                        {leads.map((lead, index) => (
-                            <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                                <div className="flex-1 p-2.5 xl:p-5">{lead.id}</div>
-                                <div className="flex-1 p-2.5 xl:p-5">
-                                    <img src={lead.icon} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
-                                </div>
-                                <div className="flex-1 p-2.5 xl:p-5">{lead.name}</div>
-                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.title || 'N/A'}</div>
-                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis1 || 'N/A'}</div>
-                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis2 || 'N/A'}</div>
-
-
-                                <div className="flex items-center flex-1 gap-2">
-                                    <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
-                                        <FaRegEdit />
-                                    </button>
-                                    <button className="text-gray-600 hover:text-black" onClick={() => handleDelete(lead.id)}>
-                                        <RiDeleteBin6Line />
-                                    </button>
-                                </div>
+                <div className="flex flex-col w-full">
+                    {leads.map((lead, index) => (
+                        <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
+                            <div className="flex-1 p-2.5 xl:p-5">{lead.id}</div>
+                            <div className="flex-1 p-2.5 xl:p-5">
+                                <img src={lead.icon} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
                             </div>
-                        ))}
+                            <div className="flex-1 p-2.5 xl:p-5">{lead.name}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.title || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis1 || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis2 || 'N/A'}</div>
+
+
+                            <div className="flex items-center flex-1 gap-2">
+                                <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
+                                    <FaRegEdit />
+                                </button>
+                                <button className="text-gray-600 hover:text-black" onClick={() => handleDelete(lead.id)}>
+                                    <RiDeleteBin6Line />
+                                </button>
+                            </div>
+                        </div>
+                    ))}
                 </div>
 
 
@@ -310,15 +310,6 @@ const Servicepagesection = () => {
                                     />
                                     {errors.title && <p className="text-sm text-red-500">{errors.title}</p>}
                                 </div>
-                                {/* <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Rate:</label>
-                                    <Input
-                                        name="rate"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter Rate details"
-                                    />
-                                    {errors.rate && <p className="text-sm text-red-500">{errors.rate}</p>}
-                                </div> */}
                                 <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Description one:</label>
                                     <textarea
