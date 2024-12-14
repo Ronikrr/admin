@@ -23,9 +23,9 @@ const Servicepagesection = () => {
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
         if (!data.image || data.image.trim() === '') newErrors.image = 'image is required';
         if (!data.post || data.post.trim() === '') newErrors.post = 'post is required';
-        if (!data.linkednin || data.linkednin.trim() === '') newErrors.dis1 = 'linkedin link required';
+        if (!data.linkednin || data.linkednin.trim() === '') newErrors.linkednin = 'linkedin link required';
         if (!data.insta || data.insta.trim() === '') newErrors.insta = 'instagram link required';
-        if (!data.facebook || data.facebook.trim() === '') newErrors.insta = 'facebook link required';
+        if (!data.facebook || data.facebook.trim() === '') newErrors.facebook = 'facebook link required';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -290,70 +290,77 @@ const Servicepagesection = () => {
             {/* Add Modal */}
             {isOpenAddModel && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-1/3 p-10 bg-white rounded-md shadow-md">
+                    <div className="w-1/2 p-10 bg-white rounded-md shadow-md">
                         <h1 className="capitalize text-[26px] font-semibold">Add New Lead</h1>
                         <form className='flex flex-col ' onSubmit={handleAddSave}>
                             <div className="w-full">
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">ID:</label>
+                                <div className="flex w-full mb-4 gap-7">
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600 capitalize">ID:</label>
 
-                                    <Input
-                                        type="text"
-                                        name="id"
-                                        disabled
-                                        value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1}
-                                    />
+                                        <Input
+                                            type="text"
+                                            name="id"
+                                            disabled
+                                            value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1}
+                                        />
+                                    </div>
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600 capitalize">Name:</label>
+                                        <Input
+                                            type="text"
+                                            name="name"
+                                            placeholder={'enter a name'}
+                                        />
+                                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                                    </div>
                                 </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Name:</label>
-                                    <Input
-                                        type="text"
-                                        name="name"
-                                        placeholder={'enter a name'}
-                                    />
-                                    {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                                <div className="flex w-full mb-4 gap-7">
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600 capitalize">post:</label>
+                                        <Input
+                                            type="text"
+                                            name="post"
+
+                                            placeholder="Enter business details"
+                                        />
+                                        {errors.post && <p className="text-sm text-red-500">{errors.post}</p>}
+                                    </div>
+
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600">linkednin :</label>
+                                        <Input
+                                            name="linkednin"
+                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                            placeholder="Enter linkednin link"
+                                        />
+                                        {errors.linkednin && <p className="text-sm text-red-500">{errors.linkednin}</p>}
+                                    </div>
+                                </div>
+                                <div className="flex w-full mb-4 gap-7">
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600">instagram :</label>
+                                        <Input
+                                            name="insta"
+                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                            placeholder="Enter instagram link"
+                                        />
+                                        {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
+                                    </div>
+                                    <div className="flex flex-col w-full ">
+                                        <label className="text-gray-600 capitalize">facebook :</label>
+                                        <Input
+                                            name="facebook"
+                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                            placeholder="Enter instagram link"
+                                        />
+                                        {errors.facebook && <p className="text-sm text-red-500">{errors.facebook}</p>}
+                                    </div>
                                 </div>
 
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">post:</label>
-                                    <Input
-                                        type="text"
-                                        name="post"
-
-                                        placeholder="Enter business details"
-                                    />
-                                    {errors.post && <p className="text-sm text-red-500">{errors.post}</p>}
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">linkednin :</label>
-                                    <textarea
-                                        name="linkednin"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter linkednin link"
-                                    />
-                                    {errors.linkednin && <p className="text-sm text-red-500">{errors.linkednin}</p>}
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">instagram :</label>
-                                    <textarea
-                                        name="insta"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter instagram link"
-                                    />
-                                    {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
-                                </div>  <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">facebook :</label>
-                                    <textarea
-                                        name="facebook"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter instagram link"
-                                    />
-                                    {errors.facebook && <p className="text-sm text-red-500">{errors.facebook}</p>}
-                                </div>
-
-                                <div className="flex flex-row w-full mb-3">
-                                    <div className="flex flex-col w-8/12">
-                                        <label className="text-gray-600">Image:</label>
+                                <div className="flex flex-row w-full mb-3 gap-7">
+                                    <div className="flex flex-col w-6/12">
+                                        <label className="text-gray-600 capitalize">Image:</label>
                                         <Input
                                             type="file"
                                             name="image"
@@ -361,9 +368,9 @@ const Servicepagesection = () => {
                                             onChange={handleFileChange}
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                         />
-                                        {errors.icon && <p className="text-sm text-red-500">{errors.icon}</p>}
+                                        {errors.image && <p className="text-sm text-red-500">{errors.image}</p>}
                                     </div>
-                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-4/12">
+                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-6/12">
                                         {imagePreview && (
                                             <div className="flex justify-center mt-2">
                                                 <img src={imagePreview} alt="Preview" className="w-16 h-16 " />
