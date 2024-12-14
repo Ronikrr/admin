@@ -13,7 +13,7 @@ import Clienttest from './pages/websolex/clienttest';
 import Login from './pages/user/login';
 import Register from './pages/user/register';
 import Profile from './pages/user/profile';
-
+import Servicepage from './pages/websolex/servicepage';
 
 const Layout = ({ children }) => {
   const [isopensidebar, setisopensidebar] = useState(false);
@@ -70,6 +70,8 @@ function App() {
           <Route path='/websolex/valuedclient' element={<Layout><Valuedclientadd /></Layout>} />
           <Route path='/websolex/latestworkadd' element={<Layout><Latestworkadd /></Layout>} />
           <Route path='/websolex/clientrate' element={<Layout><Clienttest /></Layout>} />
+          <Route path='/websolex/servicepage' element={<Layout><Servicepage /></Layout>} />
+
 
           <Route path='/crm' element={<Layout><Crm /></Layout>} />
 

@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
+import { RiCustomerService2Fill } from "react-icons/ri"
 function Sidebar({ isopensidebar, closeslidebar }) {
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -25,6 +26,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                         { id: 2, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
                         { id: 3, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
                         { id: 4, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
+                        { id: 5, icon: <RiCustomerService2Fill />, label: "service page", link: "/websolex/servicepage" }
                     ],
                 },
                 {
