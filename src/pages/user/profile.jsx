@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import BreadcrumbNav from '../../components/ui/breadcrumb'
 import Input from '../../components/ui/input'
 import Seconduray from '../../components/ui/seconduray'
@@ -7,7 +6,6 @@ import Primary from '../../components/ui/primary'
 import { FaRegUser } from 'react-icons/fa'
 import { RiContactsBook3Line } from 'react-icons/ri'
 import { MdOutlineFileUpload, MdOutlineMailOutline } from 'react-icons/md'
-import Submit from '../../components/ui/submit'
 const Profile = () => {
     return (
         <div className='p-4 mx-auto max-w-screen-2xl md:p-6 2xl:p-10' >
