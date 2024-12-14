@@ -16,15 +16,15 @@ const Valuedclientsection = () => {
 
     const handleAddSave = (e) => {
         e.preventDefault();
-        const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1; // Increment ID based on the last lead
+        const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
         const name = e.target.name.value;
 
         const newLead = {
             id,
             name,
-            image: imagePreview, // Use the preview URL for now
-            file: imageFile, // Store the file for further processing
-            addedDate: new Date().toLocaleString(), // Capture the current date and time automatically
+            image: imagePreview,
+            file: imageFile,
+            addedDate: new Date().toLocaleString(),
         };
 
         setLeads([...leads, newLead]);
