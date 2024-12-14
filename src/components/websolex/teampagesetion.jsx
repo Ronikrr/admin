@@ -21,10 +21,11 @@ const Servicepagesection = () => {
         const newErrors = {};
 
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
-        if (!data.title || data.title.trim() === '') newErrors.title = 'Title is required';
-        if (!data.icon || data.icon.trim() === '') newErrors.icon = 'Icon is required';
-        if (!data.dis1 || data.dis1.trim() === '') newErrors.dis1 = 'First display text is required';
-        if (!data.dis2 || data.dis2.trim() === '') newErrors.dis2 = 'Second display text is required';
+        if (!data.image || data.image.trim() === '') newErrors.image = 'image is required';
+        if (!data.post || data.post.trim() === '') newErrors.post = 'post is required';
+        if (!data.linkednin || data.linkednin.trim() === '') newErrors.dis1 = 'linkedin link required';
+        if (!data.insta || data.insta.trim() === '') newErrors.insta = 'instagram link required';
+        if (!data.facebook || data.facebook.trim() === '') newErrors.insta = 'facebook link required';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -35,18 +36,20 @@ const Servicepagesection = () => {
 
         const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
         const name = e.target.name.value;
-        const title = e.target.title.value;
-        const dis1 = e.target.dis1.value;
-        const dis2 = e.target.dis2.value;
+        const post = e.target.post.value;
+        const linkednin = e.target.linkednin.value;
+        const insta = e.target.insta.value;
+        const facebook = e.target.facebook.value;
 
         const newLead = {
             id,
             name,
-            title,
-            icon: imagePreview,
+            image: imagePreview,
             file: imageFile,
-            dis1,
-            dis2,
+            post,
+            linkednin,
+            insta,
+            facebook,
         };
 
         if (!validateForm(newLead)) return;
@@ -113,11 +116,11 @@ const Servicepagesection = () => {
 
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">icon</div>
+                    <div className="p-2.5 xl:p-5 flex-1">image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1">title</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis one</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis two</div>
+                    <div className="p-2.5 xl:p-5 flex-1">post</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">linkednin link</div><div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">instgram link</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">facebook link</div>
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
                 <div className="flex flex-col w-full">
@@ -126,12 +129,13 @@ const Servicepagesection = () => {
                             <div className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200" >
                                 <div className="flex-1 p-2.5 xl:p-5">{recentLead.id}</div>
                                 <div className="flex-1 p-2.5 xl:p-5">
-                                    <img src={recentLead.icon} alt={recentLead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
+                                    <img src={recentLead.image} alt={recentLead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
                                 </div>
                                 <div className="flex-1">{recentLead.name}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.title || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.dis1 || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.dis1 || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.post || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.linkednin || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.insta || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.facebook || 'N/A'}</div>
 
                                 <div className="flex items-center flex-1 gap-2">
                                     <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
@@ -157,11 +161,11 @@ const Servicepagesection = () => {
                 <h1 className='capitalize text-[26px] py-6 font-semibold'>All added</h1>
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">icon</div>
+                    <div className="p-2.5 xl:p-5 flex-1">image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1">title</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis 1 </div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis</div>
+                    <div className="p-2.5 xl:p-5 flex-1">post</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">linkednin link</div><div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">instgram link</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">facebook link</div>
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
 
@@ -170,12 +174,13 @@ const Servicepagesection = () => {
                         <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
                             <div className="flex-1 p-2.5 xl:p-5">{lead.id}</div>
                             <div className="flex-1 p-2.5 xl:p-5">
-                                <img src={lead.icon} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
+                                <img src={lead.image} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
                             </div>
                             <div className="flex-1 p-2.5 xl:p-5">{lead.name}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.title || 'N/A'}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis1 || 'N/A'}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis2 || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.post || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.linkednin || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.insta || 'N/A'}</div>
+                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.facebook || 'N/A'}</div>
 
 
                             <div className="flex items-center flex-1 gap-2">
@@ -210,24 +215,33 @@ const Servicepagesection = () => {
                                     <label className="text-gray-600">title:</label>
                                     <Input
                                         type="text"
-                                        name="business"
-                                        defaultValue={selectedLead.title}
+                                        name="post"
+                                        defaultValue={selectedLead.post}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">Description one:</label>
+                                    <label className="text-gray-600">linkednin :</label>
                                     <textarea
-                                        name="description"
+                                        name="linkednin"
                                         className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        defaultValue={selectedLead.dis1}
+                                        defaultValue={selectedLead.linkednin}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">Description two:</label>
+                                    <label className="text-gray-600">instagram :</label>
                                     <Input
-                                        name="rate"
+                                        name="insta"
                                         placeholder="Enter Rate details"
-                                        defaultValue={selectedLead.dis2}
+                                        defaultValue={selectedLead.insta}
+                                    />
+
+                                </div>
+                                <div className="flex flex-col w-full mb-3">
+                                    <label className="text-gray-600">facebook :</label>
+                                    <Input
+                                        name="facebook"
+                                        placeholder="Enter Rate details"
+                                        defaultValue={selectedLead.facebook}
                                     />
 
                                 </div>
@@ -301,32 +315,40 @@ const Servicepagesection = () => {
                                 </div>
 
                                 <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">title:</label>
+                                    <label className="text-gray-600">post:</label>
                                     <Input
                                         type="text"
-                                        name="title"
+                                        name="post"
 
                                         placeholder="Enter business details"
                                     />
-                                    {errors.title && <p className="text-sm text-red-500">{errors.title}</p>}
+                                    {errors.post && <p className="text-sm text-red-500">{errors.post}</p>}
                                 </div>
                                 <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Description one:</label>
+                                    <label className="text-gray-600">linkednin :</label>
                                     <textarea
-                                        name="dis1"
+                                        name="linkednin"
                                         className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter lead description"
+                                        placeholder="Enter linkednin link"
                                     />
-                                    {errors.dis1 && <p className="text-sm text-red-500">{errors.dis1}</p>}
+                                    {errors.linkednin && <p className="text-sm text-red-500">{errors.linkednin}</p>}
                                 </div>
                                 <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Description two:</label>
+                                    <label className="text-gray-600">instagram :</label>
                                     <textarea
-                                        name="dis2"
+                                        name="insta"
                                         className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter lead description"
+                                        placeholder="Enter instagram link"
                                     />
-                                    {errors.dis2 && <p className="text-sm text-red-500">{errors.dis2}</p>}
+                                    {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
+                                </div>  <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">facebook :</label>
+                                    <textarea
+                                        name="facebook"
+                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                        placeholder="Enter instagram link"
+                                    />
+                                    {errors.facebook && <p className="text-sm text-red-500">{errors.facebook}</p>}
                                 </div>
 
                                 <div className="flex flex-row w-full mb-3">
@@ -334,7 +356,7 @@ const Servicepagesection = () => {
                                         <label className="text-gray-600">Image:</label>
                                         <Input
                                             type="file"
-                                            name="icon"
+                                            name="image"
                                             accept="image/*"
                                             onChange={handleFileChange}
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
