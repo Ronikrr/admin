@@ -8,31 +8,23 @@ import Primary from '../ui/primary'
 import Seconduray from '../ui/seconduray';
 import Breadcrumb from '../ui/breadcrumb';
 const Servicepagesection = () => {
-    const [isOpenAddModel, setIsOpenAddModel] = useState(false);
-    const [imageFile, setImageFile] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
-    const [leads, setLeads] = useState([]);
     const [selectedLead, setSelectedLead] = useState(null);
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isOpenLastAll, setIsOpenLastAll] = useState(false);
-    const [description, setDescription] = useState('');
-    const [business, setBusiness] = useState('');
-    const [rate, setRate] = useState(1);
+    const [leads, setLeads] = useState([]);
     const [errors, setErrors] = useState({});
-    useEffect(() => {
-        setTimeout(() => {
-            setIsOpenLastAll(false)
-        }, 3000);
-    })
+    const [isOpenAddModel, setIsOpenAddModel] = useState(false);
+    const [imageFile, setImageFile] = useState(null);
+    const [imagePreview, setImagePreview] = useState(null);
 
     const validateForm = (data) => {
         const newErrors = {};
 
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
-        if (!data.description || data.description.trim() === '') newErrors.description = 'Description is required';
-        if (!data.business || data.business.trim() === '') newErrors.business = 'Business details are required';
-        if (!data.rate || data.rate < 1 || data.rate > 5) newErrors.rate = 'Rate must be between 1 and 5';
-        if (!imageFile) newErrors.image = 'Image is required';
+        if (!data.title || data.title.trim() === '') newErrors.title = 'Title is required';
+        if (!data.icon || data.icon.trim() === '') newErrors.icon = 'Icon is required';
+        if (!data.dis1 || data.dis1.trim() === '') newErrors.dis1 = 'First display text is required';
+        if (!data.dis2 || data.dis2.trim() === '') newErrors.dis2 = 'Second display text is required';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -43,31 +35,40 @@ const Servicepagesection = () => {
 
         const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
         const name = e.target.name.value;
-        const description = e.target.description.value;
-        const business = e.target.business.value;
-        const rate = parseInt(e.target.rate.value, 10);
+        const title = e.target.title.value;
+        const dis1 = e.target.dis1.value;
+        const dis2 = e.target.dis2.value;
 
         const newLead = {
             id,
             name,
-            image: imagePreview,
+            title,
+            icon: imagePreview,
             file: imageFile,
-            description,
-            business,
-            rate,
-            addedDate: new Date().toLocaleString(),
+            dis1,
+            dis2,
         };
 
         if (!validateForm(newLead)) return;
 
         setLeads([...leads, newLead]);
-        setImageFile(null);
-        setImagePreview(null);
-        setDescription('');
-        setBusiness('');
-        setRate(1);
-        setIsOpenAddModel(false);
+
+        // Reset form
+        e.target.reset();
         setErrors({});
+        setIsOpenAddModel(false);
+    };
+    const recentLead = leads[leads.length - 1];
+    const handleDelete = (id) => {
+        setLeads(leads.filter((lead) => lead.id !== id));
+    };
+    const onClickLastOpenAll = () => {
+        setIsOpenLastAll(!isOpenLastAll);
+    };
+    const handleEditClick = (lead) => {
+        setSelectedLead(lead);
+
+        setIsOpenModel(true);
     };
 
     const handleFileChange = (e) => {
@@ -77,29 +78,9 @@ const Servicepagesection = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     };
-
-    const handleEditClick = (lead) => {
-        setSelectedLead(lead);
-        setImagePreview(lead.image);
-        setImageFile(null);
-        setDescription(lead.description);
-        setBusiness(lead.business);
-        setRate(lead.rate);
-        setIsOpenModel(true);
-    };
-
-    const handleDelete = (id) => {
-        setLeads(leads.filter((lead) => lead.id !== id));
-    };
-
-    const recentLead = leads[leads.length - 1];
-    const onClickLastOpenAll = () => {
-        setIsOpenLastAll(!isOpenLastAll);
-    };
-
     return (
         <div className="w-full bg-gray-100 ">
-            <div className="flex items-center justify-between mb-4">
+            <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
                 <h1 className='capitalize text-[26px] font-semibold  '>service page</h1>
                 <Breadcrumb />
             </div>
@@ -127,25 +108,25 @@ const Servicepagesection = () => {
 
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">Image</div>
+                    <div className="p-2.5 xl:p-5 flex-1">icon</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">discription</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">business</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">rate</div>
+                    <div className="p-2.5 xl:p-5 flex-1">title</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis one</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis two</div>
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
                 <div className="flex flex-col w-full">
                     {
                         recentLead ? (
                             <div className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200" >
-                                <div className="flex-1">{recentLead.id}</div>
-                                <div className="flex-1">
-                                    <img src={recentLead.image} alt={recentLead.name} className="object-cover w-16 h-16 aspect-square" />
+                                <div className="flex-1 p-2.5 xl:p-5">{recentLead.id}</div>
+                                <div className="flex-1 p-2.5 xl:p-5">
+                                    <img src={recentLead.icon} alt={recentLead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
                                 </div>
                                 <div className="flex-1">{recentLead.name}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.description || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.business || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.rate || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.title || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.dis1 || 'N/A'}</div>
+                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.dis1 || 'N/A'}</div>
 
                                 <div className="flex items-center flex-1 gap-2">
                                     <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
@@ -171,25 +152,25 @@ const Servicepagesection = () => {
                 <h1 className='capitalize text-[26px] py-6 font-semibold'>All added</h1>
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">Image</div>
+                    <div className="p-2.5 xl:p-5 flex-1">icon</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">discription</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">business</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">rate</div>
+                    <div className="p-2.5 xl:p-5 flex-1">title</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis 1 </div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">dis</div>
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
-                {leads === 0 ? (
+
                     <div className="flex flex-col w-full">
                         {leads.map((lead, index) => (
                             <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                                <div className="flex-1">{lead.id}</div>
-                                <div className="flex-1">
-                                    <img src={lead.image} alt={lead.name} className="object-cover w-16 h-16 aspect-square" />
+                                <div className="flex-1 p-2.5 xl:p-5">{lead.id}</div>
+                                <div className="flex-1 p-2.5 xl:p-5">
+                                    <img src={lead.icon} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
                                 </div>
-                                <div className="flex-1">{lead.name}</div>
-                                <div className="flex-1 hidden md:block">{lead.description || 'N/A'}</div>
-                                <div className="flex-1 hidden md:block">{lead.business || 'N/A'}</div>
-                                <div className="flex-1 hidden md:block">{lead.rate || 'N/A'}</div>
+                                <div className="flex-1 p-2.5 xl:p-5">{lead.name}</div>
+                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.title || 'N/A'}</div>
+                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis1 || 'N/A'}</div>
+                                <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.dis2 || 'N/A'}</div>
 
 
                                 <div className="flex items-center flex-1 gap-2">
@@ -202,38 +183,9 @@ const Servicepagesection = () => {
                                 </div>
                             </div>
                         ))}
-                    </div>
-                ) : (
-
-                    <div className="p-4 text-center">
-
-                        <p>No recent lead added yet.</p>
-                    </div>
-                )}
-                <div className="flex flex-col w-full">
-                    {leads.map((lead, index) => (
-                        <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                            <div className="flex-1">{lead.id}</div>
-                            <div className="flex-1">
-                                <img src={lead.image} alt={lead.name} className="object-cover w-16 h-16 aspect-square" />
-                            </div>
-                            <div className="flex-1">{lead.name}</div>
-                            <div className="flex-1 hidden md:block">{lead.description || 'N/A'}</div>
-                            <div className="flex-1 hidden md:block">{lead.business || 'N/A'}</div>
-                            <div className="flex-1 hidden md:block">{lead.rate || 'N/A'}</div>
-
-
-                            <div className="flex items-center flex-1 gap-2">
-                                <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
-                                    <FaRegEdit />
-                                </button>
-                                <button className="text-gray-600 hover:text-black" onClick={() => handleDelete(lead.id)}>
-                                    <RiDeleteBin6Line />
-                                </button>
-                            </div>
-                        </div>
-                    ))}
                 </div>
+
+
             </div>
             {isOpenModel && selectedLead && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
@@ -250,27 +202,27 @@ const Servicepagesection = () => {
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">Business:</label>
+                                    <label className="text-gray-600">title:</label>
                                     <Input
                                         type="text"
                                         name="business"
-                                        defaultValue={business}
+                                        defaultValue={selectedLead.title}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">Description:</label>
+                                    <label className="text-gray-600">Description one:</label>
                                     <textarea
                                         name="description"
                                         className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        defaultValue={description}
+                                        defaultValue={selectedLead.dis1}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">Rate:</label>
+                                    <label className="text-gray-600">Description two:</label>
                                     <Input
                                         name="rate"
                                         placeholder="Enter Rate details"
-                                        defaultValue={rate}
+                                        defaultValue={selectedLead.dis2}
                                     />
 
                                 </div>
@@ -342,26 +294,18 @@ const Servicepagesection = () => {
                                     />
                                     {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                                 </div>
+
                                 <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Description:</label>
-                                    <textarea
-                                        name="description"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        placeholder="Enter lead description"
-                                    />
-                                    {errors.description && <p className="text-sm text-red-500">{errors.description}</p>}
-                                </div>
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Business:</label>
+                                    <label className="text-gray-600">title:</label>
                                     <Input
                                         type="text"
-                                        name="business"
+                                        name="title"
 
                                         placeholder="Enter business details"
                                     />
                                     {errors.business && <p className="text-sm text-red-500">{errors.business}</p>}
                                 </div>
-                                <div className="flex flex-col w-full">
+                                {/* <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Rate:</label>
                                     <Input
                                         name="rate"
@@ -369,15 +313,32 @@ const Servicepagesection = () => {
                                         placeholder="Enter Rate details"
                                     />
                                     {errors.rate && <p className="text-sm text-red-500">{errors.rate}</p>}
+                                </div> */}
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">Description one:</label>
+                                    <textarea
+                                        name="dis1"
+                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                        placeholder="Enter lead description"
+                                    />
+                                    {errors.description && <p className="text-sm text-red-500">{errors.description}</p>}
                                 </div>
-
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">Description two:</label>
+                                    <textarea
+                                        name="dis2"
+                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                        placeholder="Enter lead description"
+                                    />
+                                    {errors.description && <p className="text-sm text-red-500">{errors.description}</p>}
+                                </div>
 
                                 <div className="flex flex-row w-full mb-3">
                                     <div className="flex flex-col w-8/12">
                                         <label className="text-gray-600">Image:</label>
                                         <Input
                                             type="file"
-                                            name="image"
+                                            name="icon"
                                             accept="image/*"
                                             onChange={handleFileChange}
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
@@ -395,7 +356,6 @@ const Servicepagesection = () => {
                                 <div className="flex items-center justify-center w-full gap-2 my-3">
                                     <Primary
                                         type="submit"
-
                                     >
                                         Save
                                     </Primary>

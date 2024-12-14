@@ -152,7 +152,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     ))}
                 </nav>
             </div>
-            <div className={`flex flex-col absolute z-20 h-full    md:w-[289.9px]  text-white bg-[#1C2434] transition-all duration-500 ease-in-out ${isopensidebar ? 'block' : 'hidden'} `}>
+            <div className={` flex-col absolute z-20 h-full  flex md:hidden  md:w-[289.9px]  text-white bg-[#1C2434] transition-all duration-500 ease-in-out ${isopensidebar ? 'block' : 'hidden'} `}>
                 <div className="flex items-center p-6 space-x-2 text-2xl font-bold">
                     <div className="flex items-center justify-center w-8 h-8 bg-blue-500 rounded-full">
                         <span className="text-lg font-bold text-white">T</span>
