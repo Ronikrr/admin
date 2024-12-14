@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { RiNotification2Line } from "react-icons/ri";
@@ -28,6 +28,13 @@ const Header = ({ toogleslidebar }) => {
         setismessageopen(false); 
     }
 
+    useEffect(() => {
+        setTimeout(() => {
+            setisopen(false);
+            setismessageopen(false);
+            setisuseropen(false)
+        }, 5000);
+    })
     return (
         <div className='h-[80px] w-screen md:w-full flex px-11 py-4  items-center justify-center bg-[#fff] '>
             <div className="flex items-center justify-center w-full lg:justify-between">
@@ -98,14 +105,14 @@ const Header = ({ toogleslidebar }) => {
                         </li>
                     </ul>
                     <div className="relative">
-                        <Link className='flex items-center gap-4' onClick={isuseropen} >
+                        <Link className='flex items-center gap-4' onClick={isuseropen}  >
                             <span className='w-12 h-12 rounded-full' >
                                 <img src="https://react-demo.tailadmin.com/assets/user-01-b007ff3f.png" alt="user" />
                             </span>
                         </Link>
                         {isuser && (
-                            <div className="absolute right-0 flex flex-col block mt-4 bg-white border rounded-sm w-[15.625rem] border-stroke shadow-default dark:border-strokedark dark:bg-boxdark" >
-                                <ul className='flex flex-col gap-5 px-6 border-b border-stroke py-7 dark:border-strokedark text-[#64748b]' >
+                            <div className="absolute right-0 flex flex-col block mt-4 bg-white border rounded-sm w-[15.625rem] border-stroke shadow-default " >
+                                <ul className='flex flex-col gap-5 px-6 border-b border-stroke py-7  text-[#64748b]' >
                                     <li>
                                         <Link to='/profile' className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
                                             <CiUser className='text-[22px]' /> my profile

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaRegEdit } from 'react-icons/fa';
 import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
@@ -18,6 +18,11 @@ const Clienttestadd = () => {
     const [business, setBusiness] = useState('');
     const [rate, setRate] = useState(1);
     const [errors, setErrors] = useState({});
+    useEffect(() => {
+        setTimeout(() => {
+            setIsOpenLastAll(false)
+        }, 3000);
+    })
 
     const validateForm = (data) => {
         const newErrors = {};
@@ -262,9 +267,9 @@ const Clienttestadd = () => {
                                         Save
                                     </Primary>
                                     <Seconduray
-                                        type="button"
+                                        type="submit"
                                         label={`Cancel`}
-                                        onClick={() => setIsOpenAddModel(false)}
+                                        onClick={() => setIsOpenModel(false)}
                                     >
                                         Cancel
                                     </Seconduray>
