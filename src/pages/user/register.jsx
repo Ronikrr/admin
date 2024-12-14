@@ -6,8 +6,53 @@ import { AiOutlineUser } from "react-icons/ai";
 import Input from '../../components/ui/input';
 import Submit from '../../components/ui/submit';
 const Register = () => {
+    const [formdata, setfromdata] = useState({
+        name: "",
+        email: "",
+        password: "",
+        confirmPassword: "",
+        username: "",
+        profileimage: "",
+    })
     const [ishowpss, setishowpss] = useState(false);
     const [ishowrepss, setishowrepss] = useState(false);
+
+    const handlechange = (e) => {
+        const { name, value } = e.target;
+        setfromdata({
+            ...formdata,
+            [name]: value
+        })
+    }
+    const handlesubmit = (e) => {
+        e.preventDefault();
+
+        const { name, email, password, confirmPassword } = formdata;
+
+        // Basic validation
+        if (!name || !email || !password || !confirmPassword) {
+            alert("Please fill in all fields.");
+            return;
+        }
+        if (password !== confirmPassword) {
+            alert("Passwords do not match.");
+            return;
+        }
+        const userData = { name, email, password };
+        localStorage.setItem('user', JSON.stringify(userData));
+
+        alert("Registration successful!");
+        setfromdata({
+            name: '',
+            email: '',
+            password: '',
+            confirmPassword: '',
+            username: "",
+            profileimage: "",
+        });
+
+    }
+
     return (
         <div className='flex items-center justify-center w-screen h-screen' >
             <div className="border rounded-sm border-[rgb(226,232,240)] bg-white w-[1280px] shadow-sm ">
@@ -32,7 +77,10 @@ const Register = () => {
 
                                         <Input
                                             type={`text`}
-                                            placeholder='enter your password'
+                                            name={`name`}
+                                            value={formdata.name}
+                                            onChange={handlechange}
+                                            placeholder='enter your name'
                                         />
                                         <span className='absolute right-4 top-4' >
                                             <AiOutlineUser className='text-[22px] text-[rgb(100,116,139)] ' />
@@ -45,7 +93,10 @@ const Register = () => {
 
                                         <Input
                                             type={`email`}
-                                            placeholder='enter your password'
+                                            name={`email`}
+                                            value={formdata.email}
+                                            onChange={handlechange}
+                                            placeholder='enter your email'
                                         />
                                         <span className='absolute right-4 top-4' >
                                             <HiOutlineMail className='text-[22px] text-[rgb(100,116,139)] ' />
@@ -58,6 +109,9 @@ const Register = () => {
 
                                         <Input
                                             type={`${ishowpss ? 'text' : 'password'}`}
+                                            name="password"
+                                            value={formdata.password}
+                                            onChange={handlechange}
                                             placeholder='enter your password'
                                         />
                                         <span className='absolute cursor-pointer right-4 top-4 ' onClick={() => setishowpss((prev) => !prev)}  >
@@ -74,6 +128,9 @@ const Register = () => {
 
                                         <Input
                                             type={`${ishowrepss ? 'text' : 'password'}`}
+                                            name="confirmPassword"
+                                            value={formdata.confirmPassword}
+                                            onChange={handlechange}
                                             placeholder='enter your password'
                                         />
                                         <span className='absolute cursor-pointer right-4 top-4 ' onClick={() => setishowrepss((prev) => !prev)}  >
@@ -85,8 +142,8 @@ const Register = () => {
                                     </div>
                                 </div>
                                 <div className="mb-5">
-                                    <Submit
-                                        label={"create"}
+                                    <Submit onClick={handlesubmit}
+                                        label={"Create"}
 
                                     />
                                 </div>

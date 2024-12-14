@@ -3,7 +3,9 @@ import { FaRegEdit } from 'react-icons/fa';
 import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoMdAdd } from 'react-icons/io';
-
+import Input from '../ui/input'
+import Primary from '../ui/primary'
+import Seconduray from '../ui/seconduray'
 const Clienttestadd = () => {
     const [isOpenAddModel, setIsOpenAddModel] = useState(false);
     const [imageFile, setImageFile] = useState(null);
@@ -196,24 +198,23 @@ const Clienttestadd = () => {
             </div>
             {isOpenModel && selectedLead && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-full p-5 bg-white rounded-md shadow-md md:w-1/2">
+                    <div className="w-full p-10 bg-white rounded-md shadow-md md:w-1/3">
                         <form className='flex flex-col md:flex-row' onSubmit={handleAddSave}>
-                            <div className="w-full md:w-6/12">
+                            <div className="w-full ">
                                 <h1 className="capitalize text-[26px] font-semibold py-5 ">Edit Lead</h1>
                                 <div className="flex flex-col w-full mb-3 ">
                                     <label className="text-gray-600">Name:</label>
-                                    <input
+                                    <Input
                                         type="text"
                                         name="name"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                         defaultValue={selectedLead.name}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
                                     <label className="text-gray-600">Business:</label>
-                                    <input
-                                        name="work"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                    <Input
+                                        type="text"
+                                        name="business"
                                         defaultValue={business}
                                     />
                                 </div>
@@ -225,66 +226,53 @@ const Clienttestadd = () => {
                                         defaultValue={description}
                                     />
                                 </div>
-                                <div className="flex flex-col w-full">
+                                <div className="flex flex-col w-full mb-3">
                                     <label className="text-gray-600">Rate:</label>
-                                    <input
+                                    <Input
                                         name="rate"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                         placeholder="Enter Rate details"
                                         defaultValue={rate}
                                     />
 
                                 </div>
 
-                                <div className="flex flex-col w-full mb-3">
+                                <div className="flex flex-row w-full mb-3">
+                                    <div className="flex flex-col w-8/12">
                                     <label className="text-gray-600">Image:</label>
-                                    <input
+                                        <Input
                                         type="file"
                                         name="image"
                                         accept="image/*"
                                         onChange={handleFileChange}
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                    />
 
-                                    <div className="items-center hidden w-full gap-2 my-3 md:flex">
-                                        <button
-                                            type="submit"
-                                            className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-                                        >
-                                            Save Changes
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                            onClick={() => setIsOpenModel(false)}
-                                        >
-                                            Cancel
-                                        </button>
+                                        />
+                                    </div>
+                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-4/12">
+                                        {imagePreview && (
+                                            <div className="flex justify-center mt-2">
+                                                <img src={imagePreview} alt="Preview" className="w-16 h-16 " />
+                                            </div>
+                                        )}
                                     </div>
                                 </div>
+                                <div className="flex items-center justify-center w-full gap-2 my-3">
+                                    <Primary
+                                        type="submit"
+                                    >
+                                        Save
+                                    </Primary>
+                                    <Seconduray
+                                        type="button"
+                                        label={`Cancel`}
+                                        onClick={() => setIsOpenAddModel(false)}
+                                    >
+                                        Cancel
+                                    </Seconduray>
+                                </div>
+
                             </div>
-                            <div className="flex items-center justify-center w-full gap-2 my-3 md:w-6/12">
-                                {imagePreview && (
-                                    <div className="flex justify-center mt-2">
-                                        <img src={imagePreview} alt="Preview" className="w-48 h-48 md:w-8/12 md:h-8/12 " />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex items-center w-full gap-2 my-3 md:hidden">
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-                                >
-                                    Save Changes
-                                </button>
-                                <button
-                                    type="button"
-                                    className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                    onClick={() => setIsOpenModel(false)}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
+
+
                         </form>
                     </div>
                 </div>
@@ -292,26 +280,26 @@ const Clienttestadd = () => {
             {/* Add Modal */}
             {isOpenAddModel && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-1/2 p-5 bg-white rounded-md shadow-md">
+                    <div className="w-1/3 p-10 bg-white rounded-md shadow-md">
                         <h1 className="capitalize text-[26px] font-semibold">Add New Lead</h1>
-                        <form className='flex flex-col md:flex-row' onSubmit={handleAddSave}>
-                            <div className="w-full md:w-6/12">
+                        <form className='flex flex-col ' onSubmit={handleAddSave}>
+                            <div className="w-full">
                                 <div className="flex flex-col w-full">
                                     <label className="text-gray-600">ID:</label>
-                                    <input
+
+                                    <Input
                                         type="text"
                                         name="id"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                         disabled
-                                        value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1} // Auto increment ID
+                                        value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Name:</label>
-                                    <input
+                                    <Input
                                         type="text"
                                         name="name"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                        placeholder={'enter a name'}
                                     />
                                     {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                                 </div>
@@ -326,16 +314,17 @@ const Clienttestadd = () => {
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Business:</label>
-                                    <input
+                                    <Input
+                                        type="text"
                                         name="business"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+
                                         placeholder="Enter business details"
                                     />
                                     {errors.business && <p className="text-sm text-red-500">{errors.business}</p>}
                                 </div>
                                 <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Rate:</label>
-                                    <input
+                                    <Input
                                         name="rate"
                                         className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                         placeholder="Enter Rate details"
@@ -343,56 +332,45 @@ const Clienttestadd = () => {
                                     {errors.rate && <p className="text-sm text-red-500">{errors.rate}</p>}
                                 </div>
 
-                                <div className="flex flex-col w-full">
-                                    <label className="text-gray-600">Image:</label>
-                                    <input
-                                        type="file"
-                                        name="image"
-                                        accept="image/*"
-                                        onChange={handleFileChange}
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                    />
-                                    {errors.image && <p className="text-sm text-red-500">{errors.image}</p>}
 
+                                <div className="flex flex-row w-full mb-3">
+                                    <div className="flex flex-col w-8/12">
+                                        <label className="text-gray-600">Image:</label>
+                                        <Input
+                                            type="file"
+                                            name="image"
+                                            accept="image/*"
+                                            onChange={handleFileChange}
+                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+                                        />
+                                        {errors.image && <p className="text-sm text-red-500">{errors.image}</p>}
+                                    </div>
+                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-4/12">
+                                        {imagePreview && (
+                                            <div className="flex justify-center mt-2">
+                                                <img src={imagePreview} alt="Preview" className="w-16 h-16 " />
+                                            </div>
+                                        )}
+                                    </div>
                                 </div>
-                                <div className="items-center hidden w-full gap-2 my-3 md:flex">
-                                    <button
+                                <div className="flex items-center justify-center w-full gap-2 my-3">
+                                    <Primary
                                         type="submit"
-                                        className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
+
                                     >
                                         Save
-                                    </button>
-                                    <button
+                                    </Primary>
+                                    <Seconduray
                                         type="button"
-                                        className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
+                                        label={`Cancel`}
                                         onClick={() => setIsOpenAddModel(false)}
                                     >
                                         Cancel
-                                    </button>
+                                    </Seconduray>
                                 </div>
                             </div>
-                            <div className="flex items-center justify-center w-full gap-2 my-3 md:w-6/12">
-                                {imagePreview && (
-                                    <div className="flex justify-center mt-2">
-                                        <img src={imagePreview} alt="Preview" className="w-48 h-48 md:w-8/12 md:h-8/12 " />
-                                    </div>
-                                )}
-                            </div>
-                            <div className="flex items-center w-full gap-2 my-3 md:hidden">
-                                <button
-                                    type="submit"
-                                    className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
-                                >
-                                    Save Changes
-                                </button>
-                                <button
-                                    type="button"
-                                    className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
-                                    onClick={() => setIsOpenAddModel(false)}
-                                >
-                                    Cancel
-                                </button>
-                            </div>
+
+
                         </form>
                     </div>
                 </div>

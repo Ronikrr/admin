@@ -17,7 +17,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
             label: "Dashboard",
             subMenu: [
                 {
-                    id: "websolex",
+                    id: 1,
                     icon: <MdBusiness />,
                     label: "Websolex",
                     subsubmenu: [
@@ -115,9 +115,9 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                     }`}
                                                 onClick={() => handleSubMenuClick(subMenu.id)}
                                             >
-                                                <div className="flex items-center space-x-3">
-                                                    <span>{subMenu.icon}</span>
-                                                    <span className="capitalize" >{subMenu.label}</span>
+                                                <div className="flex items-center gap-3 capitalize">
+                                                    {subMenu.icon}
+                                                    {subMenu.label}
                                                 </div>
                                                 {subMenu.subsubmenu && (activeSubMenu === subMenu.id ? <FaAngleUp /> : <FaAngleDown />)}
                                             </div>
@@ -133,9 +133,9 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                                 }`}
                                                             onClick={() => handleSubSubMenuClick(subsubmenu.id)}
                                                         >
-                                                            <Link to={subsubmenu.link} className="flex items-center space-x-3" >
-                                                                <span>{subsubmenu.icon}</span>
-                                                                <span className="capitalize" >{subsubmenu.label}</span>
+                                                            <Link to={subsubmenu.link} className="flex items-center block gap-2 space-x-3 capitalize" >
+                                                                {subsubmenu.icon}
+                                                                {subsubmenu.label}
                                                             </Link>
                                                         </li>
                                                     ))}
