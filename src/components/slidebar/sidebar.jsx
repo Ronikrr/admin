@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { FaAngleUp, FaAngleDown, FaChartBar, FaBox, FaChartLine, FaBullhorn } from "react-icons/fa";
+import { FaAngleUp, FaAngleDown, FaChartBar, FaBox, FaChartLine, FaBullhorn, FaUserCheck } from "react-icons/fa";
 import { MdDashboard, MdBusiness } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
@@ -24,7 +24,7 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                         { id: 1, icon: <FaChartBar />, label: "Websolex Home", link: "/" },
                         { id: 2, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
                         { id: 3, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
-                        { id: 4, icon: <FaBox />, label: "Stocks", link: "/dashboard/ecommerce/stocks" },
+                        { id: 4, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
                     ],
                 },
                 {

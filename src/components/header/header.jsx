@@ -2,11 +2,12 @@ import React, { useState } from 'react'
 import { IoIosSearch } from "react-icons/io";
 import { Link } from 'react-router-dom';
 import { RiNotification2Line } from "react-icons/ri";
-import { CiUser } from "react-icons/ci";
+import { CiLogin, CiUser } from "react-icons/ci";
 import { RiMessage2Line } from "react-icons/ri";
 import { TiContacts } from "react-icons/ti";
 import { FaBars } from "react-icons/fa6";
 import { IoSettingsOutline } from "react-icons/io5";
+import { TbLogin, TbLogin2 } from 'react-icons/tb';
 const Header = ({ toogleslidebar }) => {
     const [isopen, setisopen] = useState(false);
     const [isuser, setisuseropen] = useState(false);
@@ -107,16 +108,24 @@ const Header = ({ toogleslidebar }) => {
                             <div className="absolute right-0 flex flex-col block mt-4 bg-white border rounded-sm w-[15.625rem] border-stroke shadow-default dark:border-strokedark dark:bg-boxdark" >
                                 <ul className='flex flex-col gap-5 px-6 border-b border-stroke py-7 dark:border-strokedark text-[#64748b]' >
                                     <li>
-                                        <Link className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
+                                        <Link to='/profile' className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
                                             <CiUser className='text-[22px]' /> my profile
                                         </Link>
-                                    </li><li>
+                                    </li>
+                                    <li>
                                         <Link className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
                                             <TiContacts className='text-[22px]' /> my contact
                                         </Link>
-                                    </li><li>
-                                        <Link className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
-                                            <IoSettingsOutline className='text-[22px]' /> settings
+                                    </li>
+
+                                    <li>
+                                        <Link to="/login" className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
+                                            <TbLogin2 className='text-[22px]' /> login
+                                        </Link>
+                                    </li>
+                                    <li>
+                                        <Link to="/register" className='flex items-center gap-3 text-sm font-medium capitalize duration-300 ease-in-out hover:text-blue-400 lg:text-base' >
+                                            <TbLogin className='text-[22px]' /> register
                                         </Link>
                                     </li>
                                 </ul>
