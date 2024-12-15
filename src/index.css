@@ -2,7 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer components {
+  :root{
+  --primary-color:#3c50e0;
+  --secondury-color:#4b5563;
+  --border-color:rgb(226,232,240);
+}
   .width_class{
     height: 320px !important;
   }

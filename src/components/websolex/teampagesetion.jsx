@@ -23,10 +23,6 @@ const Servicepagesection = () => {
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
         if (!data.image || data.image.trim() === '') newErrors.image = 'image is required';
         if (!data.post || data.post.trim() === '') newErrors.post = 'post is required';
-        if (!data.linkednin || data.linkednin.trim() === '') newErrors.linkednin = 'linkedin link required';
-        if (!data.insta || data.insta.trim() === '') newErrors.insta = 'instagram link required';
-        if (!data.facebook || data.facebook.trim() === '') newErrors.facebook = 'facebook link required';
-
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
@@ -81,11 +77,46 @@ const Servicepagesection = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     };
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setSelectedLead((prevLead) => ({
+            ...prevLead,
+            [name]: value,
+        }));
+    };
+
     useEffect(() => {
         setTimeout(() => {
             setIsOpenLastAll(false)
         }, 3000);
     })
+    const handleUpdate = (e) => {
+        e.preventDefault();
+
+        if (!selectedLead) return; // Ensure a lead is selected
+
+        const updatedLead = {
+            ...selectedLead, // Retain existing lead data
+            name: e.target.name.value,
+            post: e.target.post.value,
+            linkednin: e.target.linkednin.value,
+            insta: e.target.insta.value,
+            facebook: e.target.facebook.value,
+            image: imagePreview || selectedLead.image, // Update image if a new one is selected
+            file: imageFile || selectedLead.file,
+        };
+
+        if (!validateForm(updatedLead)) return;
+
+        // Update the leads array
+        setLeads(leads.map((lead) => (lead.id === selectedLead.id ? updatedLead : lead)));
+
+        // Reset states and close the modal
+        setSelectedLead(null);
+        setIsOpenModel(false);
+        setErrors({});
+    };
+
     return (
         <div className="w-full bg-gray-100 ">
             <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
@@ -200,7 +231,7 @@ const Servicepagesection = () => {
             {isOpenModel && selectedLead && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
                     <div className="w-full p-10 bg-white rounded-md shadow-md md:w-1/3">
-                        <form className='flex flex-col md:flex-row' onSubmit={handleAddSave}>
+                        <form className='flex flex-col md:flex-row' onSubmit={handleUpdate}>
                             <div className="w-full ">
                                 <h1 className="capitalize text-[26px] font-semibold py-5 ">Edit Lead</h1>
                                 <div className="flex flex-col w-full mb-3 ">
@@ -208,7 +239,8 @@ const Servicepagesection = () => {
                                     <Input
                                         type="text"
                                         name="name"
-                                        defaultValue={selectedLead.name}
+                                        value={selectedLead.name}
+                                        onChange={handleChange}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
@@ -216,23 +248,26 @@ const Servicepagesection = () => {
                                     <Input
                                         type="text"
                                         name="post"
-                                        defaultValue={selectedLead.post}
+                                        value={selectedLead.post}
+                                        onChange={handleChange}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
                                     <label className="text-gray-600">linkednin :</label>
-                                    <textarea
+                                    <Input
                                         name="linkednin"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        defaultValue={selectedLead.linkednin}
+
+                                        value={selectedLead.linkednin}
+                                        onChange={handleChange}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
                                     <label className="text-gray-600">instagram :</label>
                                     <Input
                                         name="insta"
-                                        placeholder="Enter Rate details"
-                                        defaultValue={selectedLead.insta}
+                                        placeholder="Enter instagram details"
+                                        value={selectedLead.insta}
+                                        onChange={handleChange}
                                     />
 
                                 </div>
@@ -240,8 +275,10 @@ const Servicepagesection = () => {
                                     <label className="text-gray-600">facebook :</label>
                                     <Input
                                         name="facebook"
-                                        placeholder="Enter Rate details"
-                                        defaultValue={selectedLead.facebook}
+                                        placeholder="Enter facebook details"
+                                        value={selectedLead.facebook}
+                                        onChange={handleChange}
+
                                     />
 
                                 </div>
@@ -322,7 +359,7 @@ const Servicepagesection = () => {
                                             type="text"
                                             name="post"
 
-                                            placeholder="Enter business details"
+                                            placeholder="Enter post details"
                                         />
                                         {errors.post && <p className="text-sm text-red-500">{errors.post}</p>}
                                     </div>
@@ -334,7 +371,7 @@ const Servicepagesection = () => {
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                             placeholder="Enter linkednin link"
                                         />
-                                        {errors.linkednin && <p className="text-sm text-red-500">{errors.linkednin}</p>}
+
                                     </div>
                                 </div>
                                 <div className="flex w-full mb-4 gap-7">
@@ -345,7 +382,7 @@ const Servicepagesection = () => {
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                             placeholder="Enter instagram link"
                                         />
-                                        {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
+
                                     </div>
                                     <div className="flex flex-col w-full ">
                                         <label className="text-gray-600 capitalize">facebook :</label>
@@ -354,7 +391,7 @@ const Servicepagesection = () => {
                                             className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
                                             placeholder="Enter instagram link"
                                         />
-                                        {errors.facebook && <p className="text-sm text-red-500">{errors.facebook}</p>}
+
                                     </div>
                                 </div>
 

@@ -4,6 +4,9 @@ import { PiDotsThreeOutlineFill } from 'react-icons/pi';
 import { RiDeleteBin6Line } from 'react-icons/ri';
 import { IoMdAdd } from 'react-icons/io';
 import Breadcrumb from '../ui/breadcrumb'
+import Input from '../ui/input';
+import Primary from '../ui/primary';
+import Seconduray from '../ui/seconduray';
 
 const Valuedclientsection = () => {
     const [isopenaddmodel, setisopenaddmodel] = useState(false);
@@ -13,7 +16,16 @@ const Valuedclientsection = () => {
     const [selectedLeadid, setselectedLeadid] = useState(null);
     const [isopenmodel, setisopenmodel] = useState(false);
     const [isopenlastall, setisopenlastall] = useState(false)
+    const [errors, setErrors] = useState({});
 
+    const validateForm = (data) => {
+        const newErrors = {};
+
+        if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
+        if (!data.image || data.image.trim() === '') newErrors.image = 'image is required';
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
     const handleAddSave = (e) => {
         e.preventDefault();
         const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
@@ -26,6 +38,7 @@ const Valuedclientsection = () => {
             file: imageFile,
             addedDate: new Date().toLocaleString(),
         };
+        if (!validateForm(newLead)) return;
 
         setLeads([...leads, newLead]);
         setImageFile(null);
@@ -62,6 +75,35 @@ const Valuedclientsection = () => {
             setisopenlastall(false)
         }, 3000);
     })
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setselectedLeadid((prevLead) => ({
+            ...prevLead,
+            [name]: value,
+        }));
+    };
+    const handleUpdate = (e) => {
+        e.preventDefault();
+
+        if (!selectedLeadid) return; // Ensure a lead is selected
+
+        const updatedLead = {
+            ...selectedLeadid, // Retain existing lead data
+            name: e.target.name.value,
+            image: imagePreview || selectedLeadid.image,
+            file: imageFile || selectedLeadid.file,
+        };
+
+        if (!validateForm(updatedLead)) return;
+
+        // Update the leads array
+        setLeads(leads.map((lead) => (lead.id === selectedLeadid.id ? updatedLead : lead)));
+
+        // Reset states and close the modal
+        setselectedLeadid(null);
+        setisopenmodel(false);
+        setErrors({});
+    };
     return (
         <div className="w-full bg-gray-100 2xl:p-10 2xl:pb-0 md:p-6">
             <div className="flex items-center justify-between mb-4 ">
@@ -160,26 +202,26 @@ const Valuedclientsection = () => {
             {isopenmodel && selectedLeadid && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
                     <div className="w-full p-5 bg-white rounded-md shadow-md md:w-1/2">
-                        <form className='flex flex-col md:flex-row' onSubmit={handleAddSave}>
+                        <form className='flex flex-col md:flex-row' onSubmit={handleUpdate}>
                             <div className="w-full md:w-6/12">
                                 <h1 className="capitalize text-[26px] font-semibold py-5 ">Edit Lead</h1>
                                 <div className="flex flex-col w-full mb-3 ">
                                     <label className="text-gray-600">Name:</label>
-                                    <input
+                                    <Input
                                         type="text"
                                         name="name"
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        defaultValue={selectedLeadid.name}
+                                        onChange={handleChange}
+                                        value={selectedLeadid.name}
                                     />
                                 </div>
                                 <div className="flex flex-col w-full mb-3">
                                     <label className="text-gray-600">Image:</label>
-                                    <input
+                                    <Input
                                         type="file"
                                         name="image"
                                         accept="image/*"
                                         onChange={handleFileChange}
-                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
+
                                     />
 
                                     <div className="items-center hidden w-full gap-2 my-3 md:flex">
@@ -228,56 +270,64 @@ const Valuedclientsection = () => {
             {/* Add Modal */}
             {isopenaddmodel && (
                 <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-1/2 p-5 bg-white rounded-md shadow-md">
+                    <div className="w-1/3 p-5 bg-white rounded-md shadow-md">
                         <h1 className="capitalize text-[26px] font-semibold">Add New Lead</h1>
                         <form onSubmit={handleAddSave}>
-                            <div className="flex flex-col w-full">
+                            <div className="flex flex-col w-full mb-4 ">
                                 <label className="text-gray-600">ID:</label>
-                                <input
+                                <Input
                                     type="text"
                                     name="id"
-                                    className="p-2.5 xl:p-5 border border-gray-200 rounded-md"
                                     disabled
                                     value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1} // Auto increment ID
                                 />
                             </div>
-                            <div className="flex flex-col w-full">
+                            <div className="flex flex-col w-full mb-4 ">
                                 <label className="text-gray-600">Name:</label>
-                                <input
+                                <Input
                                     type="text"
                                     name="name"
-                                    className="p-2.5 xl:p-5 border border-gray-200 rounded-md"
+
                                 />
+                                {errors.name && (<p className='text-red-500' >
+                                    {errors.name}
+                                </p>)}
                             </div>
-                            <div className="flex flex-col w-full">
-                                <label className="text-gray-600">Image:</label>
-                                <input
-                                    type="file"
-                                    name="image"
-                                    accept="image/*"
-                                    onChange={handleFileChange}
-                                    className="p-2.5 xl:p-5 border border-gray-200 rounded-md"
-                                />
+                            <div className="flex flex-col w-full mb-4 ">
+                                <div className="flex flex-col w-6/12 ">
+                                    <label className="text-gray-600">Image:</label>
+                                    <Input
+                                        type="file"
+                                        name="image"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
+
+                                    />
+                                </div>
                                 {imagePreview && (
                                     <div className="mt-2">
                                         <img src={imagePreview} alt="Preview" className="w-20 h-20 rounded-full" />
                                     </div>
                                 )}
+                                {errors.image && (<p className='text-red-500' >
+                                    {errors.image}
+                                </p>)}
                             </div>
                             <div className="flex items-center gap-2">
-                                <button
+                                <Primary
                                     type="submit"
                                     className="px-4 py-2 font-bold text-white bg-blue-500 rounded hover:bg-blue-700"
                                 >
                                     Save
-                                </button>
-                                <button
+                                </Primary>
+                                <Seconduray
                                     type="button"
+                                    label={"Cancel"}
                                     className="px-4 py-2 font-bold text-white bg-red-500 rounded hover:bg-red-700"
                                     onClick={() => setisopenaddmodel(false)}
                                 >
                                     Cancel
-                                </button>
+                                </Seconduray>
                             </div>
                         </form>
                     </div>
