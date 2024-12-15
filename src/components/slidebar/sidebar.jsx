@@ -132,8 +132,8 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                                                             key={subsubmenu.id}
                                                         >
                                                             <Link to={subsubmenu.link}
-                                                                className={`flex items-center capitalize p-2 gap-3 rounded cursor-pointer ${activeSubSubMenu === subsubmenu.id
-                                                                    ? "bg-gray-700"
+                                                                className={`flex items-center capitalize p-2 gap-3 rounded cursor-pointer hover:bg-gray-700 z-10  ${activeSubSubMenu === subsubmenu.id
+                                                                    ? "bg-gray-700  relative after:absolute after:w-[30px] after:h-[40px] after:rounded-l-full after:bg-[rgb(243,244,246)] after:z-0 after:-right-[16px] "
                                                                     : "bg-gray-900"
                                                                     }`}
                                                                 onClick={() => handleSubSubMenuClick(subsubmenu.id)}
