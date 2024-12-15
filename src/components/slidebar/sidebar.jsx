@@ -23,11 +23,11 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     label: "Websolex",
                     subsubmenu: [
                         { id: 1, icon: <FaChartBar />, label: "Websolex Home", link: "/" },
+                        { id: 6, icon: <FaCrown />, label: "team page", link: "/websolex/teampage" },
                         { id: 2, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
                         { id: 3, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
                         { id: 4, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
                         { id: 5, icon: <RiCustomerService2Fill />, label: "service page", link: "/websolex/servicepage" },
-                        { id: 6, icon: <FaCrown />, label: "team page", link: "/websolex/teampage" }
                     ],
                 },
                 {
