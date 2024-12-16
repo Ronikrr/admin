@@ -7,67 +7,70 @@ import Input from '../ui/input'
 import Primary from '../ui/primary'
 import Seconduray from '../ui/seconduray';
 import Breadcrumb from '../ui/breadcrumb';
+
+
 const Servicepagesection = () => {
-    const [selectedLead, setSelectedLead] = useState(null);
     const [isOpenModel, setIsOpenModel] = useState(false);
-    const [isOpenLastAll, setIsOpenLastAll] = useState(false);
-    const [leads, setLeads] = useState([]);
-    const [errors, setErrors] = useState({});
     const [isOpenAddModel, setIsOpenAddModel] = useState(false);
     const [imageFile, setImageFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
+    const [leads, setLeads] = useState([]);
+    const [selectedLead, setSelectedLead] = useState(null);
+
+
+    const [errors, setErrors] = useState({});
+    const [isOpenLastAll, setIsOpenLastAll] = useState(false);
+
+    useEffect(() => {
+        setTimeout(() => {
+            setIsOpenLastAll(false);
+        }, 3000);
+    }, [isOpenLastAll]);
 
     const validateForm = (data) => {
         const newErrors = {};
-
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
-        if (!data.image || data.image.trim() === '') newErrors.image = 'image is required';
         if (!data.post || data.post.trim() === '') newErrors.post = 'post is required';
+
+        if (!imageFile) newErrors.image = 'Image is required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
     };
 
     const handleAddSave = (e) => {
         e.preventDefault();
-
         const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
         const name = e.target.name.value;
         const post = e.target.post.value;
         const linkednin = e.target.linkednin.value;
         const insta = e.target.insta.value;
-        const facebook = e.target.facebook.value;
+        const facebook = e.target.facebook.value
 
-        const newLead = {
-            id,
-            name,
-            image: imagePreview,
-            file: imageFile,
-            post,
-            linkednin,
-            insta,
-            facebook,
-        };
+
+        const newLead = { id, name, post, image: imagePreview, file: imageFile, linkednin, insta, facebook, addedDate: new Date().toLocaleString() };
 
         if (!validateForm(newLead)) return;
 
         setLeads([...leads, newLead]);
-
-        // Reset form
-        e.target.reset();
-        setErrors({});
+        resetFormFields();
         setIsOpenAddModel(false);
     };
-    const recentLead = leads[leads.length - 1];
-    const handleDelete = (id) => {
-        setLeads(leads.filter((lead) => lead.id !== id));
-    };
-    const onClickLastOpenAll = () => {
-        setIsOpenLastAll(!isOpenLastAll);
-    };
-    const handleEditClick = (lead) => {
-        setSelectedLead(lead);
 
-        setIsOpenModel(true);
+    const handleEditSave = (e) => {
+        e.preventDefault();
+        const updatedLead = { ...selectedLead, image: imagePreview };
+        if (!validateForm(updatedLead)) return;
+
+        setLeads(leads.map(lead => (lead.id === selectedLead.id ? updatedLead : lead)));
+        resetFormFields();
+        setIsOpenModel(false);
+    };
+
+    const resetFormFields = () => {
+        setImageFile(null);
+        setImagePreview(null);
+
+        setErrors({});
     };
 
     const handleFileChange = (e) => {
@@ -77,49 +80,28 @@ const Servicepagesection = () => {
             setImagePreview(URL.createObjectURL(file));
         }
     };
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setSelectedLead((prevLead) => ({
-            ...prevLead,
-            [name]: value,
-        }));
+    const recentLead = leads[leads.length - 1];
+
+    const handleEditClick = (lead) => {
+        setSelectedLead(lead);
+        setImagePreview(lead.image);
+
+
+        setIsOpenModel(true);
     };
 
-    useEffect(() => {
-        setTimeout(() => {
-            setIsOpenLastAll(false)
-        }, 3000);
-    })
-    const handleUpdate = (e) => {
-        e.preventDefault();
-
-        if (!selectedLead) return; // Ensure a lead is selected
-
-        const updatedLead = {
-            ...selectedLead, // Retain existing lead data
-            name: e.target.name.value,
-            post: e.target.post.value,
-            linkednin: e.target.linkednin.value,
-            insta: e.target.insta.value,
-            facebook: e.target.facebook.value,
-            image: imagePreview || selectedLead.image, // Update image if a new one is selected
-            file: imageFile || selectedLead.file,
-        };
-
-        if (!validateForm(updatedLead)) return;
-
-        // Update the leads array
-        setLeads(leads.map((lead) => (lead.id === selectedLead.id ? updatedLead : lead)));
-
-        // Reset states and close the modal
-        setSelectedLead(null);
-        setIsOpenModel(false);
-        setErrors({});
+    const handleDelete = (id) => {
+        setLeads(leads.filter((lead) => lead.id !== id));
     };
+
+    const onClickLastOpenAll = () => {
+        setIsOpenLastAll(!isOpenLastAll);
+    };
+
 
     return (
         <div className="w-full bg-gray-100 ">
-            <div className="flex flex-col items-center justify-between mb-4 md:flex-row">
+            <div className="flex items-center justify-between mb-4">
                 <h1 className='capitalize text-[26px] font-semibold  '>team page</h1>
                 <Breadcrumb />
             </div>
@@ -144,47 +126,48 @@ const Servicepagesection = () => {
                         </div>
                     </div>
                 </div>
-
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">image</div>
+                    <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1">post</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">linkednin link</div><div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">instgram link</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">facebook link</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">post</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">linkednin</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">insta</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">facebook</div>
+
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
                 <div className="flex flex-col w-full">
-                    {
-                        recentLead ? (
-                            <div className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200" >
-                                <div className="flex-1 p-2.5 xl:p-5">{recentLead.id}</div>
-                                <div className="flex-1 p-2.5 xl:p-5">
-                                    <img src={recentLead.image} alt={recentLead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
-                                </div>
-                                <div className="flex-1">{recentLead.name}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.post || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.linkednin || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.insta || 'N/A'}</div>
-                                <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.facebook || 'N/A'}</div>
-
-                                <div className="flex items-center flex-1 gap-2">
-                                    <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
-                                        <FaRegEdit />
-                                    </button>
-                                    <button className="text-gray-600 hover:text-black" onClick={() => handleDelete(recentLead.id)}>
-                                        <RiDeleteBin6Line />
-                                    </button>
-                                </div>
+                    {recentLead ? (
+                        <div className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
+                            <div className="flex-1">{recentLead.id}</div>
+                            <div className="flex-1">
+                                <img src={recentLead.image} alt={recentLead.name} className="object-cover w-16 h-16 aspect-square" />
                             </div>
-                        ) : (
-                            <div className="p-4 text-center">
+                            <div className="flex-1">{recentLead.name}</div>
+                            <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.post || 'N/A'}</div>
+                            <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.linkednin || 'N/A'}</div>
+                            <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.insta || 'N/A'}</div>
+                            <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">{recentLead.facebook || 'N/A'}</div>
 
-                                <p>No recent lead added yet.</p>
+                            {/* Render Star Rating for Recent Lead */}
+
+
+                            <div className="flex items-center flex-1 gap-2">
+                                <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
+                                    <FaRegEdit />
+                                </button>
+                                <button className="text-red-500 hover:text-black" onClick={() => handleDelete(recentLead.id)}>
+                                    <RiDeleteBin6Line />
+                                </button>
                             </div>
-                        )}
+                        </div>
+                    ) : (
+                        <div className="p-4 text-center">
+                            <p>No recent lead added yet.</p>
+                        </div>
+                    )}
                 </div>
-
             </div>
 
             {/* All Leads */}
@@ -192,250 +175,158 @@ const Servicepagesection = () => {
                 <h1 className='capitalize text-[26px] py-6 font-semibold'>All added</h1>
                 <div className="text-gray-600 text-[10px] md:text-[16px] uppercase leading-[1.5] bg-gray-100 flex w-full">
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
-                    <div className="p-2.5 xl:p-5 flex-1">image</div>
+                    <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1">post</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">linkednin link</div><div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">instgram link</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block ">facebook link</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">post</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">linkednin</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">insta</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:block">facebook</div>
+
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
-
                 <div className="flex flex-col w-full">
-                    {leads.map((lead, index) => (
-                        <div key={index} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                            <div className="flex-1 p-2.5 xl:p-5">{lead.id}</div>
-                            <div className="flex-1 p-2.5 xl:p-5">
-                                <img src={lead.image} alt={lead.name} className="object-cover w-10 h-10 xl:w-16 xl:h-16 aspect-square" />
-                            </div>
-                            <div className="flex-1 p-2.5 xl:p-5">{lead.name}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.post || 'N/A'}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.linkednin || 'N/A'}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.insta || 'N/A'}</div>
-                            <div className="flex-1 p-2.5 xl:p-5 hidden md:block">{lead.facebook || 'N/A'}</div>
+                    {leads.length > 0 ? (
+                        leads.map((lead) => (
+                            <div key={lead.id} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
+                                <div className="flex-1">{lead.id}</div>
+                                <div className="flex-1">
+                                    <img src={lead.image} alt={lead.name || 'Lead Image'} className="object-cover w-16 h-16 aspect-w-1 aspect-h-1" />
+                                </div>
+                                <div className="flex-1">{lead.name}</div>
+                                <div className="flex-1 hidden md:block">{lead.post || 'N/A'}</div>
+                                <div className="flex-1 hidden md:block">{lead.linkednin || 'N/A'}</div>
+                                <div className="flex-1 hidden md:block">{lead.insta || 'N/A'}</div> <div className="flex-1 hidden md:block">{lead.facebook || 'N/A'}</div>
 
 
-                            <div className="flex items-center flex-1 gap-2">
-                                <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
-                                    <FaRegEdit />
-                                </button>
-                                <button className="text-gray-600 hover:text-black" onClick={() => handleDelete(lead.id)}>
-                                    <RiDeleteBin6Line />
-                                </button>
+                                <div className="flex items-center flex-1 gap-2">
+                                    <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
+                                        <FaRegEdit />
+                                    </button>
+                                    <button className="text-red-500 hover:text-black" onClick={() => handleDelete(lead.id)}>
+                                        <RiDeleteBin6Line />
+                                    </button>
+                                </div>
                             </div>
+                        ))
+                    ) : (
+                        <div className="p-4 text-center">
+                            <p>No leads found.</p>
                         </div>
-                    ))}
+                    )}
                 </div>
-
-
             </div>
-            {isOpenModel && selectedLead && (
-                <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-full p-10 bg-white rounded-md shadow-md md:w-1/3">
-                        <form className='flex flex-col md:flex-row' onSubmit={handleUpdate}>
-                            <div className="w-full ">
-                                <h1 className="capitalize text-[26px] font-semibold py-5 ">Edit Lead</h1>
-                                <div className="flex flex-col w-full mb-3 ">
+
+            {(isOpenAddModel || isOpenModel) && (
+                <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full capitalize bg-black bg-opacity-50">
+                    <div className="w-1/3 p-10 bg-white rounded-md shadow-md">
+                        <h1 className="capitalize text-[26px] font-semibold mb-4 ">{isOpenAddModel ? 'Add New Lead' : 'Edit Lead'}</h1>
+                        <form className="flex flex-col gap-4" onSubmit={isOpenAddModel ? handleAddSave : handleEditSave}>
+                            <div className="flex flex-col items-center gap-1 lg:gap-4 lg:flex-row ">
+                                {/* Name */}
+                                <div className="flex flex-col w-full">
                                     <label className="text-gray-600">Name:</label>
                                     <Input
                                         type="text"
                                         name="name"
-                                        value={selectedLead.name}
-                                        onChange={handleChange}
+                                        defaultValue={isOpenModel ? selectedLead.name : ''}
+
+                                        placeholder="Enter name"
                                     />
+                                    {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
                                 </div>
-                                <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">title:</label>
+
+
+
+                                {/* insta */}
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">post:</label>
                                     <Input
                                         type="text"
                                         name="post"
-                                        value={selectedLead.post}
-                                        onChange={handleChange}
+                                        defaultValue={isOpenModel ? selectedLead.post : ''}
+
+                                        placeholder="Enter post"
                                     />
+                                    {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
                                 </div>
-                                <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">linkednin :</label>
+                            </div>
+                            <div className="flex flex-col items-center gap-1 lg:gap-4 lg:flex-row ">
+                                {/* linkednin */}
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">linkednin:</label>
                                     <Input
                                         name="linkednin"
+                                        className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
 
-                                        value={selectedLead.linkednin}
-                                        onChange={handleChange}
+                                        defaultValue={isOpenModel ? selectedLead.linkednin : ''}
+
+                                        placeholder="Enter linkednin"
                                     />
+                                    {errors.linkednin && <p className="text-sm text-red-500">{errors.linkednin}</p>}
                                 </div>
-                                <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">instagram :</label>
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">insta:</label>
                                     <Input
+                                        type="text"
                                         name="insta"
-                                        placeholder="Enter instagram details"
-                                        value={selectedLead.insta}
-                                        onChange={handleChange}
-                                    />
+                                        defaultValue={isOpenModel ? selectedLead.insta : ''}
 
+                                        placeholder="Enter insta"
+                                    />
+                                    {errors.insta && <p className="text-sm text-red-500">{errors.insta}</p>}
                                 </div>
-                                <div className="flex flex-col w-full mb-3">
-                                    <label className="text-gray-600">facebook :</label>
+                            </div>
+                            <div className="flex flex-col w-full">
+                                <label className="text-gray-600">facebook:</label>
+                                <Input
+                                    type="text"
+                                    name="facebook"
+                                    defaultValue={isOpenModel ? selectedLead.facebook : ''}
+
+                                    placeholder="Enter facebook"
+                                />
+                                {errors.facebook && <p className="text-sm text-red-500">{errors.facebook}</p>}
+                            </div>
+
+                            {/* Image Upload */}
+                            <div className="flex flex-row w-full mb-3">
+                                <div className="flex flex-col w-8/12">
+                                    <label className="text-gray-600">Image:</label>
                                     <Input
-                                        name="facebook"
-                                        placeholder="Enter facebook details"
-                                        value={selectedLead.facebook}
-                                        onChange={handleChange}
-
+                                        type="file"
+                                        name="image"
+                                        accept="image/*"
+                                        onChange={handleFileChange}
                                     />
-
+                                    {errors.image && <p className="text-sm text-red-500">{errors.image}</p>}
                                 </div>
-
-                                <div className="flex flex-row w-full mb-3">
-                                    <div className="flex flex-col w-8/12">
-                                        <label className="text-gray-600">Image:</label>
-                                        <Input
-                                            type="file"
-                                            name="image"
-                                            accept="image/*"
-                                            onChange={handleFileChange}
-
-                                        />
+                                {imagePreview && (
+                                    <div className="flex justify-center mt-2">
+                                        <img src={imagePreview} alt="Preview" className="w-16 h-16" />
                                     </div>
-                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-4/12">
-                                        {imagePreview && (
-                                            <div className="flex justify-center mt-2">
-                                                <img src={imagePreview} alt="Preview" className="w-16 h-16 " />
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-center w-full gap-2 my-3">
-                                    <Primary
-                                        type="submit"
-                                    >
-                                        Save
-                                    </Primary>
-                                    <Seconduray
-                                        type="submit"
-                                        label={`Cancel`}
-                                        onClick={() => setIsOpenModel(false)}
-                                    >
-                                        Cancel
-                                    </Seconduray>
-                                </div>
-
+                                )}
                             </div>
 
-
+                            {/* Buttons */}
+                            <div className="flex justify-between mt-4">
+                                <Primary type="submit" className="btn btn-primary">
+                                    {isOpenAddModel ? 'Save' : 'Update'}
+                                </Primary>
+                                <Seconduray
+                                    type="button"
+                                    label={"Cancel"}
+                                    onClick={() => (isOpenAddModel ? setIsOpenAddModel(false) : setIsOpenModel(false))}
+                                >
+                                    Cancel
+                                </Seconduray>
+                            </div>
                         </form>
                     </div>
                 </div>
             )}
-            {/* Add Modal */}
-            {isOpenAddModel && (
-                <div className="fixed top-0 left-0 z-50 flex items-center justify-center w-full h-full bg-black bg-opacity-50">
-                    <div className="w-1/2 p-10 bg-white rounded-md shadow-md">
-                        <h1 className="capitalize text-[26px] font-semibold">Add New Lead</h1>
-                        <form className='flex flex-col ' onSubmit={handleAddSave}>
-                            <div className="w-full">
-                                <div className="flex w-full mb-4 gap-7">
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600 capitalize">ID:</label>
-
-                                        <Input
-                                            type="text"
-                                            name="id"
-                                            disabled
-                                            value={leads.length === 0 ? 1 : leads[leads.length - 1].id + 1}
-                                        />
-                                    </div>
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600 capitalize">Name:</label>
-                                        <Input
-                                            type="text"
-                                            name="name"
-                                            placeholder={'enter a name'}
-                                        />
-                                        {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
-                                    </div>
-                                </div>
-                                <div className="flex w-full mb-4 gap-7">
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600 capitalize">post:</label>
-                                        <Input
-                                            type="text"
-                                            name="post"
-
-                                            placeholder="Enter post details"
-                                        />
-                                        {errors.post && <p className="text-sm text-red-500">{errors.post}</p>}
-                                    </div>
-
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600">linkednin :</label>
-                                        <Input
-                                            name="linkednin"
-                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                            placeholder="Enter linkednin link"
-                                        />
-
-                                    </div>
-                                </div>
-                                <div className="flex w-full mb-4 gap-7">
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600">instagram :</label>
-                                        <Input
-                                            name="insta"
-                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                            placeholder="Enter instagram link"
-                                        />
-
-                                    </div>
-                                    <div className="flex flex-col w-full ">
-                                        <label className="text-gray-600 capitalize">facebook :</label>
-                                        <Input
-                                            name="facebook"
-                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                            placeholder="Enter instagram link"
-                                        />
-
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-row w-full mb-3 gap-7">
-                                    <div className="flex flex-col w-6/12">
-                                        <label className="text-gray-600 capitalize">Image:</label>
-                                        <Input
-                                            type="file"
-                                            name="image"
-                                            accept="image/*"
-                                            onChange={handleFileChange}
-                                            className="p-2.5 xl:p-3 border border-gray-200 rounded-md"
-                                        />
-                                        {errors.image && <p className="text-sm text-red-500">{errors.image}</p>}
-                                    </div>
-                                    <div className="flex items-center justify-center w-full gap-2 my-3 md:w-6/12">
-                                        {imagePreview && (
-                                            <div className="flex justify-center mt-2">
-                                                <img src={imagePreview} alt="Preview" className="w-16 h-16 " />
-                                            </div>
-                                        )}
-                                    </div>
-                                </div>
-                                <div className="flex items-center justify-center w-full gap-2 my-3">
-                                    <Primary
-                                        type="submit"
-                                    >
-                                        Save
-                                    </Primary>
-                                    <Seconduray
-                                        type="button"
-                                        label={`Cancel`}
-                                        onClick={() => setIsOpenAddModel(false)}
-                                    >
-                                        Cancel
-                                    </Seconduray>
-                                </div>
-                            </div>
 
 
-                        </form>
-                    </div>
-                </div>
-            )}
+
         </div>
     );
 };

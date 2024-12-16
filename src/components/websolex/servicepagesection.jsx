@@ -102,7 +102,7 @@ const Servicepagesection = () => {
     return (
         <div className="w-full bg-gray-100 ">
             <div className="flex items-center justify-between mb-4">
-                <h1 className='capitalize text-[26px] font-semibold  '>our dis2</h1>
+                <h1 className='capitalize text-[26px] font-semibold  '>service page</h1>
                 <Breadcrumb />
             </div>
 
