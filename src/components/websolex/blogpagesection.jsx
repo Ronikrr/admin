@@ -9,7 +9,7 @@ import Seconduray from '../ui/seconduray';
 import Breadcrumb from '../ui/breadcrumb';
 
 
-const Valuedclientsection = () => {
+const Blogpagesection = () => {
     const [isOpenModel, setIsOpenModel] = useState(false);
     const [isOpenAddModel, setIsOpenAddModel] = useState(false);
     const [imageFile, setImageFile] = useState(null);
@@ -28,6 +28,13 @@ const Valuedclientsection = () => {
     const validateForm = (data) => {
         const newErrors = {};
         if (!data.name || data.name.trim() === '') newErrors.name = 'Name is required';
+        if (!data.title1 || data.title1.trim() === '') newErrors.title1 = 'title1 is required';
+        if (!data.description1 || data.description1.trim() === '') newErrors.description1 = 'description1 is required';
+        if (!data.title2 || data.title2.trim() === '') newErrors.title2 = 'title2 is required';
+        if (!data.description2 || data.description2.trim() === '') newErrors.description2 = 'description2 is required';
+        if (!data.title3 || data.title3.trim() === '') newErrors.title3 = 'title3 is required';
+        if (!data.description3 || data.description3.trim() === '') newErrors.description3 = 'description3 is required';
+
         if (!imageFile) newErrors.image = 'Image is required';
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -37,7 +44,26 @@ const Valuedclientsection = () => {
         e.preventDefault();
         const id = leads.length === 0 ? 1 : leads[leads.length - 1].id + 1;
         const name = e.target.name.value;
-        const newLead = { id, name, image: imagePreview, file: imageFile, addedDate: new Date().toLocaleString() };
+        const title1 = e.target.title1.value;
+        const description1 = e.target.description1.value;
+        const title2 = e.target.title1.value;
+        const description2 = e.target.description1.value;
+        const title3 = e.target.title1.value;
+        const description3 = e.target.description1.value;
+
+        const newLead = {
+            id,
+            name,
+            image: imagePreview,
+            file: imageFile,
+            title1,
+            description1,
+            title2,
+            description2,
+            title3,
+            description3,
+            addedDate: new Date().toLocaleString()
+        };
 
         if (!validateForm(newLead)) return;
 
@@ -120,6 +146,12 @@ const Valuedclientsection = () => {
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
                     <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 1</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 2</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 3</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 1</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 2</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 3</div>
 
 
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
@@ -127,11 +159,41 @@ const Valuedclientsection = () => {
                 <div className="flex flex-col w-full">
                     {recentLead ? (
                         <div className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                            <div className="flex-1">{recentLead.id}</div>
-                            <div className="flex-1">
+                            <div className="flex-1 p-2.5 xl:p-5">{recentLead.id}</div>
+                            <div className="flex-1 p-2.5 xl:p-5">
                                 <img src={recentLead.image} alt={recentLead.name} className="object-cover w-16 h-16 aspect-square" />
                             </div>
-                            <div className="flex-1">{recentLead.name}</div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.title1}
+                            </div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.title2}
+                            </div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.title3}
+                            </div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.description1}
+                            </div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.description2}
+                            </div>
+                            <div
+                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                            >
+                                {recentLead.description3}
+                            </div>
+
                             <div className="flex items-center flex-1 gap-2">
                                 <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
                                     <FaRegEdit />
@@ -156,7 +218,12 @@ const Valuedclientsection = () => {
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
                     <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 1</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 2</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 3</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 1</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 2</div>
+                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 3</div>
 
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
@@ -169,6 +236,36 @@ const Valuedclientsection = () => {
                                     <img src={lead.image} alt={lead.name || 'Lead Image'} className="object-cover w-16 h-16 aspect-w-1 aspect-h-1" />
                                 </div>
                                 <div className="flex-1">{lead.name}</div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.title1}
+                                </div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.title2}
+                                </div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.title3}
+                                </div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.description1}
+                                </div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.description2}
+                                </div>
+                                <div
+                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
+                                >
+                                    {lead.description3}
+                                </div>
 
 
 
@@ -206,6 +303,75 @@ const Valuedclientsection = () => {
                                     placeholder="Enter name"
                                 />
                                 {errors.name && <p className="text-sm text-red-500">{errors.name}</p>}
+                            </div>
+                            <div className="flex flex-row items-center gap-4">
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">title1:</label>
+                                    <Input
+                                        type="text"
+                                        name="title1"
+                                        defaultValue={isOpenModel ? selectedLead.title1 : ''}
+
+                                        placeholder="Enter title1"
+                                    />
+                                    {errors.title1 && <p className="text-sm text-red-500">{errors.title1}</p>}
+                                </div> <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">description1:</label>
+                                    <Input
+                                        type="text"
+                                        name="description1"
+                                        defaultValue={isOpenModel ? selectedLead.description1 : ''}
+
+                                        placeholder="Enter description1"
+                                    />
+                                    {errors.description1 && <p className="text-sm text-red-500">{errors.description1}</p>}
+                                </div>
+                            </div>
+                            <div className="flex flex-row items-center gap-4">
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">title2:</label>
+                                    <Input
+                                        type="text"
+                                        name="title2"
+                                        defaultValue={isOpenModel ? selectedLead.title2 : ''}
+
+                                        placeholder="Enter title2"
+                                    />
+                                    {errors.title2 && <p className="text-sm text-red-500">{errors.title2}</p>}
+                                </div> <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">description2:</label>
+                                    <Input
+                                        type="text"
+                                        name="description2"
+                                        defaultValue={isOpenModel ? selectedLead.description2 : ''}
+
+                                        placeholder="Enter description2"
+                                    />
+                                    {errors.description2 && <p className="text-sm text-red-500">{errors.description2}</p>}
+                                </div>
+                            </div>
+                            <div className="flex flex-row items-center gap-4">
+                                <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">title3:</label>
+                                    <Input
+                                        type="text"
+                                        name="title3"
+                                        defaultValue={isOpenModel ? selectedLead.title3 : ''}
+
+                                        placeholder="Enter title3"
+                                    />
+                                    {errors.title3 && <p className="text-sm text-red-500">{errors.title3}</p>}
+                                </div> <div className="flex flex-col w-full">
+                                    <label className="text-gray-600">description3:</label>
+                                    <Input
+                                        type="text"
+                                        name="description3"
+                                        defaultValue={isOpenModel ? selectedLead.description3 : ''}
+
+                                        placeholder="Enter description3"
+                                    />
+                                    {errors.description3 && <p className="text-sm text-red-500">{errors.description3}</p>}
+                                </div>
                             </div>
 
                             {/* Image Upload */}
@@ -251,6 +417,6 @@ const Valuedclientsection = () => {
     );
 };
 
-export default Valuedclientsection;
+export default Blogpagesection;
 
 
