@@ -15,6 +15,7 @@ import Register from './pages/user/register';
 import Profile from './pages/user/profile';
 import Servicepage from './pages/websolex/servicepage';
 import Teampage from './pages/websolex/teampage';
+import Blogpage from './pages/websolex/blogpage';
 
 const Layout = ({ children }) => {
   const [isopensidebar, setisopensidebar] = useState(false);
@@ -73,6 +74,7 @@ function App() {
           <Route path='/websolex/clientrate' element={<Layout><Clienttest /></Layout>} />
           <Route path='/websolex/servicepage' element={<Layout><Servicepage /></Layout>} />
           <Route path='/websolex/teampage' element={<Layout><Teampage /></Layout>} />
+          <Route path='/websolex/blogpage' element={<Layout><Blogpage /></Layout>} />
 
 
           <Route path='/crm' element={<Layout><Crm /></Layout>} />

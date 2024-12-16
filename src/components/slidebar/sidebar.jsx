@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { FaAngleUp, FaAngleDown, FaChartBar, FaChartLine, FaBullhorn, FaUserCheck, FaCrown } from "react-icons/fa";
+import { FaAngleUp, FaAngleDown, FaChartBar, FaChartLine, FaBullhorn, FaUserCheck, FaCrown, FaPen } from "react-icons/fa";
 import { MdDashboard, MdBusiness } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
@@ -23,11 +23,12 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                     label: "Websolex",
                     subsubmenu: [
                         { id: 1, icon: <FaChartBar />, label: "Websolex Home", link: "/" },
-                        { id: 6, icon: <FaCrown />, label: "team page", link: "/websolex/teampage" },
-                        { id: 2, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
-                        { id: 3, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
-                        { id: 4, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
-                        { id: 5, icon: <RiCustomerService2Fill />, label: "service page", link: "/websolex/servicepage" },
+                        { id: 2, icon: <FaCrown />, label: "team page", link: "/websolex/teampage" },
+                        { id: 3, icon: <FaHandshake />, label: "Trusted Bond", link: "/websolex/valuedclient" },
+                        { id: 4, icon: <MdOutlineWorkspacePremium />, label: "Our work", link: "/websolex/latestworkadd" },
+                        { id: 5, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
+                        { id: 6, icon: <RiCustomerService2Fill />, label: "service page", link: "/websolex/servicepage" },
+                        { id: 7, icon: <FaPen />, label: "blog page", link: "/websolex/blogpage" },
                     ],
                 },
                 {
