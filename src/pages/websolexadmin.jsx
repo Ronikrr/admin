@@ -11,32 +11,32 @@ const Websolexhome = () => {
         {
             id: 1,
             icon: <FiEye className="text-[#3c50e0] text-[25px]" />,
-            balance: "$3.456K",
+            balance: "3500",
             totalview: "Total views",
-            per: "0.43%",
+
             pericon: <FaArrowUpLong />,
         },
         {
             id: 2,
             icon: <AiOutlineShoppingCart className="text-[#3c50e0] text-[25px]" />,
-            balance: "$2.12K",
-            totalview: "Total profit",
-            per: "-1.23%",
+            balance: "10",
+            totalview: "contact count",
+
             pericon: <FaArrowDownLong />,
         }, {
             id: 3,
             icon: <MdOutlineShoppingBag className="text-[#3c50e0] text-[25px]" />,
-            balance: "$3.456K",
-            totalview: "Total views",
-            per: "0.43%",
+            balance: "32",
+            totalview: "work upload ",
+
             pericon: <FaArrowUpLong />,
         },
         {
             id: 4,
             icon: <GoPeople className="text-[#3c50e0] text-[25px]" />,
-            balance: "$2.123K",
-            totalview: "Total clicks",
-            per: "-1.23%",
+            balance: "40",
+            totalview: "service count",
+
             pericon: <FaArrowDownLong />,
         },
     ];
@@ -53,24 +53,20 @@ const Websolexhome = () => {
                             key={item.id}
                             className="flex w-full lg:w-6/12 xl:w-3/12 mb-7 2xl:mb-0 lg:odd:justify-start lg:even:justify-end 2xl:odd:justify-noraml 2xl:even:justify-normal "
                         >
-                            <div className="w-full py-6 bg-white border rounded-sm shadow-md lg:w-11/12 border-[rgb(226,232,240)] px-7">
-                                <div className="flex items-center justify-center bg-gray-100 rounded-full h-11 w-11">
-                                    {item.icon}
+                            <div className="w-full py-6 bg-white border justify-center text-center rounded-sm shadow-md lg:w-11/12 border-[rgb(226,232,240)] px-7">
+                                <div className="flex justify-start w-full">
+                                    <div className="flex items-center justify-center bg-gray-100 rounded-full h-11 w-11">
+                                        {item.icon}
+                                    </div>
                                 </div>
-                                <div className="flex items-end justify-between mt-4">
-                                    <div>
+                                <div className="flex items-end justify-start mt-4">
+                                    <div className="text-left" >
                                         <h4 className="text-[24px] font-semibold">{item.balance}</h4>
                                         <span className="text-sm font-bold flex text-[#64748B]">
                                             {item.totalview}
                                         </span>
                                     </div>
-                                    <span
-                                        className={`flex items-center gap-1 text-sm font-medium ${isPositive ? "text-[#10B981]" : "text-[#EF4444]"
-                                            }`}
-                                    >
-                                        {item.per}
-                                        {isPositive ? <FaArrowUpLong /> : <FaArrowDownLong />}
-                                    </span>
+
                                 </div>
                             </div>
                         </div>

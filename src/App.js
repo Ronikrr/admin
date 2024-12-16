@@ -16,6 +16,9 @@ import Profile from './pages/user/profile';
 import Servicepage from './pages/websolex/servicepage';
 import Teampage from './pages/websolex/teampage';
 import Blogpage from './pages/websolex/blogpage';
+import Contactdetails from './pages/websolex/contactdetails';
+import Contactform from './pages/websolex/contactform';
+
 
 const Layout = ({ children }) => {
   const [isopensidebar, setisopensidebar] = useState(false);
@@ -75,6 +78,9 @@ function App() {
           <Route path='/websolex/servicepage' element={<Layout><Servicepage /></Layout>} />
           <Route path='/websolex/teampage' element={<Layout><Teampage /></Layout>} />
           <Route path='/websolex/blogpage' element={<Layout><Blogpage /></Layout>} />
+          <Route path='/websolex/contactdetails' element={<Layout><Contactdetails /></Layout>} />
+          <Route path='/websolex/contactform' element={<Layout><Contactform /></Layout>} />
+
 
 
           <Route path='/crm' element={<Layout><Crm /></Layout>} />

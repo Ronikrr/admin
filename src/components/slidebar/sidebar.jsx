@@ -6,7 +6,8 @@ import { Link } from "react-router-dom";
 import { IoMdClose } from "react-icons/io";
 import { FaHandshake } from "react-icons/fa";
 import { MdOutlineWorkspacePremium } from "react-icons/md";
-import { RiCustomerService2Fill } from "react-icons/ri"
+import { RiContactsFill, RiCustomerService2Fill } from "react-icons/ri"
+import { MdContactPage } from "react-icons/md";
 function Sidebar({ isopensidebar, closeslidebar }) {
     const [activeMenu, setActiveMenu] = useState(null);
     const [activeSubMenu, setActiveSubMenu] = useState(null);
@@ -29,6 +30,8 @@ function Sidebar({ isopensidebar, closeslidebar }) {
                         { id: 5, icon: <FaUserCheck />, label: "client rate", link: "/websolex/clientrate" },
                         { id: 6, icon: <RiCustomerService2Fill />, label: "service page", link: "/websolex/servicepage" },
                         { id: 7, icon: <FaPen />, label: "blog page", link: "/websolex/blogpage" },
+                        { id: 8, icon: <MdContactPage />, label: "contact details", link: "/websolex/contactdetails" },
+                        { id: 9, icon: <RiContactsFill />, label: "contact & subscribe", link: "/websolex/contactform" },
                     ],
                 },
                 {
