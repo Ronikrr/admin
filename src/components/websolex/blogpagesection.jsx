@@ -146,12 +146,7 @@ const Blogpagesection = () => {
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
                     <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 1</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 2</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 3</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 1</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 2</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 3</div>
+
 
 
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
@@ -163,36 +158,8 @@ const Blogpagesection = () => {
                             <div className="flex-1 p-2.5 xl:p-5">
                                 <img src={recentLead.image} alt={recentLead.name} className="object-cover w-16 h-16 aspect-square" />
                             </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.title1}
-                            </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.title2}
-                            </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.title3}
-                            </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.description1}
-                            </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.description2}
-                            </div>
-                            <div
-                                className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                            >
-                                {recentLead.description3}
-                            </div>
+                            <div className="flex-1 p-2.5 xl:p-5">{recentLead.name}</div>
+
 
                             <div className="flex items-center flex-1 gap-2">
                                 <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(recentLead)}>
@@ -218,56 +185,17 @@ const Blogpagesection = () => {
                     <div className="p-2.5 xl:p-5 flex-1">ID</div>
                     <div className="p-2.5 xl:p-5 flex-1">Image</div>
                     <div className="p-2.5 xl:p-5 flex-1">Name</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 1</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 2</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">title 3</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 1</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 2</div>
-                    <div className="p-2.5 xl:p-5 flex-1 hidden lg:flex">des 3</div>
-
                     <div className="p-2.5 xl:p-5 flex-1">Action</div>
                 </div>
                 <div className="flex flex-col w-full">
                     {leads.length > 0 ? (
                         leads.map((lead) => (
                             <div key={lead.id} className="flex items-center w-full p-2.5 xl:p-3 border-b border-gray-200">
-                                <div className="flex-1">{lead.id}</div>
-                                <div className="flex-1">
+                                <div className="p-2.5 xl:p-5 flex-1">{lead.id}</div>
+                                <div className="p-2.5 xl:p-5 flex-1">
                                     <img src={lead.image} alt={lead.name || 'Lead Image'} className="object-cover w-16 h-16 aspect-w-1 aspect-h-1" />
                                 </div>
-                                <div className="flex-1">{lead.name}</div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.title1}
-                                </div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.title2}
-                                </div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.title3}
-                                </div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.description1}
-                                </div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.description2}
-                                </div>
-                                <div
-                                    className="flex-1 p-2.5 xl:p-5 overflow-hidden text-ellipsis whitespace-nowrap"
-                                >
-                                    {lead.description3}
-                                </div>
-
-
+                                <div className="p-2.5 xl:p-5 flex-1">{lead.name}</div>
 
                                 <div className="flex items-center flex-1 gap-2">
                                     <button className="text-gray-600 hover:text-black" onClick={() => handleEditClick(lead)}>
